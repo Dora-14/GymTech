@@ -1,0 +1,64 @@
+<div class="login-container">
+  <!-- LEFT PANEL: Welcome Section -->
+  <!-- This section displays a welcome message to users. 
+       It's perfect for displaying branding, app description, or promotional content later -->
+  <div class="login-panel login-panel--welcome">
+    <div class="welcome-content">
+      <h1 class="welcome-title">Welcome to GymTech</h1>
+      <p class="welcome-subtitle">Gym Management System</p>
+      <p class="welcome-message">
+        Manage your gym efficiently with our comprehensive admin dashboard.
+        Track members, subscriptions, trainers, and more in one place.
+      </p>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: Login Form Section -->
+  <!-- This section contains the actual login form for admins -->
+  <div class="login-panel login-panel--form">
+    <div class="form-wrapper">
+      <h2 class="form-title">Admin Login</h2>
+      
+      <!-- Login Form -->
+      <form class="login-form" (ngSubmit)="onLogin()">
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <input 
+            type="text" 
+            id="username" 
+            class="form-input"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            class="form-input"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="btn btn-primary">
+          Log In
+        </button>
+      </form>
+
+      <!-- Sign-up Link Section -->
+      <!-- This will be expanded later for account registration flow -->
+      <div class="auth-footer">
+        <p class="auth-text">
+          Don't have an account yet?
+          <a href="/signup" class="auth-link">Sign up here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

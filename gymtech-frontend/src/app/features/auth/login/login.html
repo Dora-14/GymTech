@@ -23,12 +23,12 @@
       <form class="login-form" (ngSubmit)="onLogin()">
         <!-- Username Field -->
         <div class="form-group">
-          <label for="username" class="form-label">Username</label>
+          <label for="username" class="form-label">Username or Email</label>
           <input 
             type="text" 
             id="username" 
             class="form-input"
-            placeholder="Enter your username"
+            placeholder="Enter your username or email"
             required
           />
         </div>
@@ -56,9 +56,130 @@
       <div class="auth-footer">
         <p class="auth-text">
           Don't have an account yet?
-          <a href="/signup" class="auth-link">Sign up here</a>
+          <button 
+            type="button"
+            class="auth-link"
+            (click)="openSignupModal()"
+          >
+            Sign up here
+          </button>
         </p>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     SIGN-UP MODAL - Appears on top of the login form
+     ====================================================== -->
+
+<!-- Modal Overlay: Dark background that appears behind the modal -->
+<!-- Clicking it closes the modal (if desired) -->
+<div 
+  class="modal-overlay" 
+  *ngIf="isSignupModalOpen"
+  (click)="closeSignupModal()"
+></div>
+
+<!-- Modal Box: The actual sign-up form container -->
+<div 
+  class="modal" 
+  *ngIf="isSignupModalOpen"
+>
+  <!-- Modal Header -->
+  <div class="modal-header">
+    <h2 class="modal-title">Create Your Account</h2>
+    <!-- Close Button (X icon) -->
+    <button 
+      type="button"
+      class="modal-close"
+      (click)="closeSignupModal()"
+      aria-label="Close modal"
+    >
+      ×
+    </button>
+  </div>
+
+  <!-- Modal Body: Contains the sign-up form -->
+  <div class="modal-body">
+    <form class="signup-form" (ngSubmit)="onSignup()">
+
+      <!-- First Name Field -->
+      <div class="form-group">
+        <label for="signup-firstname" class="form-label">First Name</label>
+        <input 
+          type="text" 
+          id="signup-firstname" 
+          class="form-input"
+          placeholder="Enter your first name"
+          required
+        />
+      </div>
+
+      <!-- Last Name Field -->
+      <div class="form-group">
+        <label for="signup-lastname" class="form-label">Last Name</label>
+        <input 
+          type="text" 
+          id="signup-lastname" 
+          class="form-input"
+          placeholder="Enter your last name"
+          required
+        />
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="signup-email" class="form-label">Email</label>
+        <input 
+          type="email" 
+          id="signup-email" 
+          class="form-input"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <!-- Phone Number Field -->
+      <div class="form-group">
+        <label for="signup-phone" class="form-label">Phone Number</label>
+        <input 
+          type="tel" 
+          id="signup-phone" 
+          class="form-input"
+          placeholder="Enter your phone number"
+          required
+        />
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="signup-password" class="form-label">Password</label>
+        <input 
+          type="password" 
+          id="signup-password" 
+          class="form-input"
+          placeholder="Enter a strong password"
+          required
+        />
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <label for="signup-confirmpassword" class="form-label">Confirm Password</label>
+        <input 
+          type="password" 
+          id="signup-confirmpassword" 
+          class="form-input"
+          placeholder="Confirm your password"
+          required
+        />
+      </div>
+
+      <!-- Sign-up Button -->
+      <button type="submit" class="btn btn-primary btn-modal">
+        Create Account
+      </button>
+    </form>
   </div>
 </div>

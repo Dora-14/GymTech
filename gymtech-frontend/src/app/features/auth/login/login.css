@@ -4,7 +4,7 @@
 
 .login-container {
   /* Set the background image path */
-  background-image: url('/images/login_page.jpeg');
+  background-image: url('/images/login_page.webp');
   
   /* Make sure the image covers the entire container without distorting */
   background-size: cover;
@@ -231,6 +231,169 @@
 }
 
 /* ================================================
+   MODAL OVERLAY - Semi-transparent background
+   ================================================ */
+
+.modal-overlay {
+  /* Create a semi-transparent dark background */
+  /* This darkens everything behind the modal to focus user attention */
+  background-color: rgba(0, 0, 0, 0.6);
+  
+  /* Position it to cover the entire screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  /* Make sure it appears above the login form but below the modal */
+  z-index: 999;
+}
+
+/* ================================================
+   MODAL - The popup form container
+   ================================================ */
+
+.modal {
+  /* Position the modal in the center of the screen */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  
+  /* Center the modal using transform */
+  /* This is better than margins because it works regardless of modal size */
+  transform: translate(-50%, -50%);
+  
+  /* Make sure the modal appears on top of everything */
+  z-index: 1000;
+  
+  /* Set modal dimensions */
+  width: 90%;
+  max-width: 450px;
+  
+  /* White background for the modal */
+  background-color: white;
+  
+  /* Add rounded corners for a modern look */
+  border-radius: 8px;
+  
+  /* Add shadow for depth */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  
+  /* Smooth animation when modal appears */
+  animation: slideIn 0.3s ease-out;
+}
+
+/* ================================================
+   MODAL ANIMATION - Smooth entrance effect
+   ================================================ */
+
+@keyframes slideIn {
+  from {
+    /* Start: modal is slightly above and invisible */
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-20px);
+  }
+  to {
+    /* End: modal is centered and visible */
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+/* ================================================
+   MODAL HEADER - Title and close button section
+   ================================================ */
+
+.modal-header {
+  /* Create a flex container to spread title and close button */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* Add padding and border at bottom to separate from form */
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+  /* Style for the modal title */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.modal-close {
+  /* X button styling */
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Smooth color change on hover */
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  /* Darker color when hovering over close button */
+  color: #333;
+}
+
+/* ================================================
+   MODAL BODY - Contains the sign-up form
+   ================================================ */
+
+.modal-body {
+  /* Add padding for content */
+  padding: 1.5rem;
+}
+
+.signup-form {
+  /* Form layout: stack fields vertically */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ================================================
+   SELECT DROPDOWN - Special styling for role selector
+   ================================================ */
+
+.form-select {
+  /* Make select dropdown look like other inputs */
+  appearance: none;
+  
+  /* Add a small arrow icon in the background */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  
+  /* Add padding on the right for the arrow */
+  padding-right: 2.5rem;
+  
+  /* Cursor pointer to indicate it's clickable */
+  cursor: pointer;
+}
+
+/* ================================================
+   MODAL-SPECIFIC BUTTON - Button inside modal
+   ================================================ */
+
+.btn-modal {
+  /* Slightly more spacing in modal for better visibility */
+  margin-top: 1rem;
+}
+
+/* ================================================
    RESPONSIVE DESIGN - Mobile and tablet styles
    ================================================ */
 
@@ -253,5 +416,17 @@
   
   .form-title {
     font-size: 1.5rem;
+  }
+  
+  /* Modal adjustments for mobile */
+  .modal {
+    /* Take up more of the screen width on mobile */
+    width: 95%;
+    max-width: none;
+  }
+  
+  .modal-body {
+    /* Reduce padding on mobile for more space */
+    padding: 1rem;
   }
 }

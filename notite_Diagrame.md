@@ -19,6 +19,7 @@
 
 
 **The UML diagram** presents the main entities of the system and the relationships between them. The one-to-many relationships reflect the data history, while the many-to-many relationship between Member and Trainer is implemented through the intermediate class MemberTrainer.
+In the UML diagram, association relationships of type one-to-many and many-to-many were used, as they best describe the structure of the application. Inheritance was not introduced because the main classes have different responsibilities and do not naturally derive from one another.
 
 
 

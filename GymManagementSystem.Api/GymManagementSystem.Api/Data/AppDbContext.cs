@@ -14,6 +14,7 @@ namespace GymManagementSystem.Api.Data
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<MemberTrainer> MemberTrainers { get; set; }
+        public DbSet<AdminUser> AdminUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MemberTrainer>()

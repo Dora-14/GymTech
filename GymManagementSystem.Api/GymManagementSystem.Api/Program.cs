@@ -7,17 +7,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add services to the container.
-
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<MemberService>();
+builder.Services.AddScoped<SubscriptionService>();
+builder.Services.AddScoped<PaymentService>();
+builder.Services.AddScoped<AttendanceService>();
+builder.Services.AddScoped<TrainerService>();
+builder.Services.AddScoped<AuthService>();
 
 var app = builder.Build();
 

@@ -1,6 +1,7 @@
 ﻿using GymManagementSystem.Api.Data;
 using GymManagementSystem.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymManagementSystem.Api.Services
 {
@@ -20,7 +21,12 @@ namespace GymManagementSystem.Api.Services
 
         public async Task<Member?> GetByIdAsync(int id)
         {
-            return await _context.Members.FindAsync(id);
+            return await _context.Members
+                .Include(m => m.Subscriptions)
+                .Include(m => m.Payments)
+                .Include(m => m.MemberTrainers)
+                    .ThenInclude(mt => mt.Trainer) 
+                .FirstOrDefaultAsync(m => m.MemberId == id);
         }
 
         public async Task<Member> AddAsync(Member member)

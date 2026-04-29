@@ -276,3 +276,4 @@ C:\Users\Simi\Desktop\GymManagementSystem.Api\GymManagementSystem.Api\obj\Debug\
 C:\Users\Simi\Desktop\GymManagementSystem.Api\GymManagementSystem.Api\obj\Debug\net8.0\GymManagementSystem.Api.pdb
 C:\Users\Simi\Desktop\GymManagementSystem.Api\GymManagementSystem.Api\obj\Debug\net8.0\GymManagementSystem.Api.genruntimeconfig.cache
 C:\Users\Simi\Desktop\GymManagementSystem.Api\GymManagementSystem.Api\obj\Debug\net8.0\ref\GymManagementSystem.Api.dll
+D:\School\UTCN\An 3\Semestru 2\II\Proiect\GymManagementSystem.Api\GymManagementSystem.Api\obj\Debug\net8.0\GymManagementSystem.Api.sourcelink.json

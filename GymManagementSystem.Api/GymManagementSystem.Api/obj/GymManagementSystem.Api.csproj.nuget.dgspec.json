@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj": {}
+    "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj": {
+    "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj",
+        "projectUniqueName": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj",
         "projectName": "GymManagementSystem.Api",
-        "projectPath": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj",
+        "projectPath": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj",
         "packagesPath": "C:\\Users\\Simi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\obj\\",
+        "outputPath": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -23,7 +23,7 @@ namespace GymManagementSystem.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Member>> GetById(int id)
+        public async Task<IActionResult> GetMember(int id)
         {
             var member = await _memberService.GetByIdAsync(id);
             if (member == null) return NotFound();
@@ -34,7 +34,7 @@ namespace GymManagementSystem.Api.Controllers
         public async Task<ActionResult<Member>> Create(Member member)
         {
             var createdMember = await _memberService.AddAsync(member);
-            return CreatedAtAction(nameof(GetById), new { id = createdMember.MemberId }, createdMember);
+            return CreatedAtAction(nameof(GetMember), new { id = createdMember.MemberId }, createdMember);
         }
 
         [HttpDelete("{id}")]

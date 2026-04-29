@@ -1,53 +1,109 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\",
+  "WorkspaceRootPath": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\services\\trainerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\services\\trainerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\controllers\\trainercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\controllers\\trainercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\membertrainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\membertrainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\membertrainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\trainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\trainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Trainers.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\services\\subscriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\services\\subscriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\controllers\\subscriptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\controllers\\subscriptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\users\\simi\\desktop\\gymmanagementsystem.api\\gymmanagementsystem.api\\migrations\\20260422200108_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\member.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\adminuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\adminuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Payments.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Members.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Attendances.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\services\\attendanceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\services\\attendanceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\trainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\trainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|d:\\school\\utcn\\an 3\\semestru 2\\ii\\proiect\\gymmanagementsystem.api\\gymmanagementsystem.api\\migrations\\20260422200108_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\migrations\\20260422200108_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -58,100 +114,118 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
+              "Title": "Attendance.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Attendance.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\Attendance.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Attendance.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Models\\Attendance.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T19:38:47.253Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Program.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Program.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Program.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T19:44:42.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SubscriptionService.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\SubscriptionService.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Services\\SubscriptionService.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\SubscriptionService.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Services\\SubscriptionService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T16:37:43.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MemberController.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\MemberController.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\MemberController.cs",
               "RelativeDocumentMoniker": "GymManagementSystem.Api\\Controllers\\MemberController.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\MemberController.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\MemberController.cs",
               "RelativeToolTip": "GymManagementSystem.Api\\Controllers\\MemberController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCQAAABqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-22T20:10:33.277Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MemberService.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\MemberService.cs",
-              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Services\\MemberService.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\MemberService.cs",
-              "RelativeToolTip": "GymManagementSystem.Api\\Services\\MemberService.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAIwCUAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "TrainerService.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\TrainerService.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Services\\TrainerService.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\TrainerService.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Services\\TrainerService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T20:05:57.111Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "20260422200108_InitialCreate.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Migrations\\20260422200108_InitialCreate.cs",
-              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Migrations\\20260422200108_InitialCreate.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Migrations\\20260422200108_InitialCreate.cs",
-              "RelativeToolTip": "GymManagementSystem.Api\\Migrations\\20260422200108_InitialCreate.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T20:01:08.799Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Program.cs",
-              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Program.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Program.cs",
-              "RelativeToolTip": "GymManagementSystem.Api\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T19:44:42.462Z"
+              "WhenOpened": "2026-04-28T16:58:53.957Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\appsettings.json",
-              "RelativeDocumentMoniker": "GymManagementSystem.Api\\appsettings.json",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\appsettings.json",
-              "RelativeToolTip": "GymManagementSystem.Api\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-22T19:44:02.957Z"
+              "Title": "MemberTrainer.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\MemberTrainer.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\MemberTrainer.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\MemberTrainer.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Models\\MemberTrainer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T19:33:39.025Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "GymManagementSystem.Api\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Title": "MemberService.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\MemberService.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Services\\MemberService.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\MemberService.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Services\\MemberService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T19:40:53.752Z"
+              "WhenOpened": "2026-04-22T20:05:57.111Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Attendance.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Attendance.cs",
-              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\Attendance.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Attendance.cs",
-              "RelativeToolTip": "GymManagementSystem.Api\\Models\\Attendance.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "TrainerController.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\TrainerController.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Controllers\\TrainerController.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\TrainerController.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Controllers\\TrainerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T19:38:47.253Z"
+              "WhenOpened": "2026-04-28T16:59:24.669Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Payment.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Payment.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Payment.cs",
               "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\Payment.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Payment.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Payment.cs",
               "RelativeToolTip": "GymManagementSystem.Api\\Models\\Payment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -159,51 +233,208 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MemberTrainer.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\MemberTrainer.cs",
-              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\MemberTrainer.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\MemberTrainer.cs",
-              "RelativeToolTip": "GymManagementSystem.Api\\Models\\MemberTrainer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T19:33:39.025Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Trainer.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Trainer.cs",
-              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\Trainer.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Trainer.cs",
-              "RelativeToolTip": "GymManagementSystem.Api\\Models\\Trainer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T19:33:26.186Z"
+              "Title": "dbo.Trainers [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Trainers.sql",
+              "ToolTip": "dbo.Trainers [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-04-29T10:45:56.934Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "Subscription.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Subscription.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Subscription.cs",
               "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\Subscription.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Subscription.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Subscription.cs",
               "RelativeToolTip": "GymManagementSystem.Api\\Models\\Subscription.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-22T19:33:12.145Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Member.cs",
-              "DocumentMoniker": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Member.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Member.cs",
               "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\Member.cs",
-              "ToolTip": "C:\\Users\\Simi\\Desktop\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Member.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Member.cs",
               "RelativeToolTip": "GymManagementSystem.Api\\Models\\Member.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-22T19:21:13.102Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SubscriptionController.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\SubscriptionController.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Controllers\\SubscriptionController.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\SubscriptionController.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Controllers\\SubscriptionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T16:40:10.951Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Services\\AuthService.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\AuthService.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Services\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T17:10:29.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "dbo.Attendances.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Attendances.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Attendances.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-04-28T16:54:37.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AdminUser.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\AdminUser.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\AdminUser.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\AdminUser.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Models\\AdminUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T17:07:35.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T17:10:54.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "AttendanceController.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\AttendanceController.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Controllers\\AttendanceController.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\AttendanceController.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Controllers\\AttendanceController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T16:42:22.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Data\\AppDbContext.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T19:40:53.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "dbo.Members [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Members.sql",
+              "ToolTip": "dbo.Members [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-04-28T16:54:53.239Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "dbo.Payments.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Payments.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/GymManagementDb/True/SqlTable/dbo.Payments.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-04-28T16:55:03.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AttendanceService.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\AttendanceService.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Services\\AttendanceService.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\AttendanceService.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Services\\AttendanceService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T16:41:57.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Controllers\\PaymentController.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Controllers\\PaymentController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA5wCYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T16:40:55.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Services\\PaymentService.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Services\\PaymentService.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T16:38:14.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "20260422200108_InitialCreate.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Migrations\\20260422200108_InitialCreate.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Migrations\\20260422200108_InitialCreate.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Migrations\\20260422200108_InitialCreate.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Migrations\\20260422200108_InitialCreate.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T20:01:08.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\appsettings.json",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\appsettings.json",
+              "RelativeToolTip": "GymManagementSystem.Api\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-22T19:44:02.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Trainer.cs",
+              "DocumentMoniker": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Trainer.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\Trainer.cs",
+              "ToolTip": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Trainer.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Models\\Trainer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T19:33:26.186Z"
             }
           ]
         }

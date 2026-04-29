@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 /**
  * Login Component
@@ -11,10 +13,13 @@ import { CommonModule } from '@angular/common';
  * - Two-column login layout (welcome panel + login form)
  * - Sign-up modal with user role selection
  * - Modal state management (open/close)
+ * - Navigation to dashboard after login
  * 
  * Structure:
  * - Uses Angular's standalone component feature (no module needed)
  * - Uses CommonModule for *ngIf directive (showing/hiding the modal)
+ * - Uses FormsModule for form handling
+ * - Uses Router for navigation to dashboard
  * - Loads the HTML template from login.html
  * - Loads the CSS styles from login.css
  * 
@@ -28,7 +33,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule],  // CommonModule provides *ngIf, *ngFor, and other directives
+  imports: [CommonModule, FormsModule],  // Added FormsModule for proper form handling
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -43,6 +48,12 @@ export class Login {
    * This is used in the template with *ngIf to show/hide the modal overlay and modal box
    */
   isSignupModalOpen: boolean = false;
+
+  /**
+   * Constructor - Dependency Injection
+   * Injects the Router service to enable navigation between pages
+   */
+  constructor(private router: Router) {}
 
   /**
    * openSignupModal() method
@@ -86,21 +97,18 @@ export class Login {
    * onLogin() method
    * 
    * This is called when the user clicks the "Log In" button on the login form.
-   * Currently, it's a placeholder that will be expanded with:
+   * Navigates to the dashboard after login.
+   * 
+   * Future implementation:
    * - Form validation
    * - API call to authenticate user
    * - Error handling
-   * - Navigation to dashboard on success
-   * 
-   * Future implementation:
-   * - Inject AuthService and call login(username, password)
-   * - Handle success: navigate to dashboard
-   * - Handle error: display error message in the form
+   * - Store authentication token
    */
   onLogin(): void {
-    console.log('Login button clicked');
-    // TODO: Add authentication logic here
-    // This will integrate with an AuthService once we create it
+    console.log('Login successful - Navigating to dashboard');
+    // TODO: Add form validation and authentication here
+    this.router.navigate(['/dashboard']);
   }
 
   /**

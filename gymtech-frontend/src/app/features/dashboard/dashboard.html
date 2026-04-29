@@ -1,0 +1,207 @@
+<!-- DASHBOARD CONTAINER -->
+<div class="dashboard-container">
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="dashboard-navbar">
+    <div class="navbar-brand">
+      <h1 class="navbar-title">GymTech</h1>
+      <p class="navbar-subtitle">Admin Dashboard</p>
+    </div>
+    <div class="navbar-actions">
+      <span class="user-greeting">Welcome, {{ adminName }}</span>
+      <button class="btn btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="dashboard-content">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <!-- Dashboard Home -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'home'"
+          (click)="navigateTo('home')"
+        >
+          <span class="sidebar-icon">🏠</span>
+          <span class="sidebar-label">Dashboard Home</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-title">Features</div>
+
+        <!-- Generate Reports -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'reports'"
+          (click)="navigateTo('reports')"
+        >
+          <span class="sidebar-icon">📊</span>
+          <span class="sidebar-label">Generate Reports</span>
+        </button>
+
+        <!-- Search & Filter -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'search'"
+          (click)="navigateTo('search')"
+        >
+          <span class="sidebar-icon">🔍</span>
+          <span class="sidebar-label">Search & Filter</span>
+        </button>
+
+        <!-- Record Attendance -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'attendance'"
+          (click)="navigateTo('attendance')"
+        >
+          <span class="sidebar-icon">✓</span>
+          <span class="sidebar-label">Record Attendance</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-title">Management</div>
+
+        <!-- Manage Members -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'members'"
+          (click)="navigateTo('members')"
+        >
+          <span class="sidebar-icon">👥</span>
+          <span class="sidebar-label">Manage Members</span>
+        </button>
+
+        <!-- Manage Trainers -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'trainers'"
+          (click)="navigateTo('trainers')"
+        >
+          <span class="sidebar-icon">💪</span>
+          <span class="sidebar-label">Manage Trainers</span>
+        </button>
+
+        <!-- Manage Subscriptions -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'subscriptions'"
+          (click)="navigateTo('subscriptions')"
+        >
+          <span class="sidebar-icon">📋</span>
+          <span class="sidebar-label">Manage Subscriptions</span>
+        </button>
+
+        <!-- Manage Payments -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'payments'"
+          (click)="navigateTo('payments')"
+        >
+          <span class="sidebar-icon">💳</span>
+          <span class="sidebar-label">Manage Payments</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+      <div class="page-header">
+        <h2 class="page-title">{{ getPageTitle() }}</h2>
+      </div>
+
+      <div class="page-content">
+        <!-- Home Page -->
+        <div *ngIf="activeFeature === 'home'" class="feature-content">
+          <div class="welcome-card">
+            <h3>Welcome to GymTech Admin Dashboard</h3>
+            <p>
+              Manage your gym efficiently with our comprehensive admin system.
+              Use the sidebar to navigate through different features.
+            </p>
+            <div class="quick-stats">
+              <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                  <div class="stat-label">Total Members</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💪</div>
+                <div class="stat-info">
+                  <div class="stat-label">Active Trainers</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💳</div>
+                <div class="stat-info">
+                  <div class="stat-label">Monthly Revenue</div>
+                  <div class="stat-value">$0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Generate Reports -->
+        <div *ngIf="activeFeature === 'reports'" class="feature-content">
+          <div class="empty-state">
+            <p>📊 Generate Reports - Coming Soon</p>
+            <p class="text-muted">Create comprehensive reports about your gym operations</p>
+          </div>
+        </div>
+
+        <!-- Search & Filter -->
+        <div *ngIf="activeFeature === 'search'" class="feature-content">
+          <div class="empty-state">
+            <p>🔍 Search & Filter - Coming Soon</p>
+            <p class="text-muted">Search and filter members, trainers, and more</p>
+          </div>
+        </div>
+
+        <!-- Record Attendance -->
+        <div *ngIf="activeFeature === 'attendance'" class="feature-content">
+          <div class="empty-state">
+            <p>✓ Record Attendance - Coming Soon</p>
+            <p class="text-muted">Track and record member attendance</p>
+          </div>
+        </div>
+
+        <!-- Manage Members -->
+        <div *ngIf="activeFeature === 'members'" class="feature-content">
+          <div class="empty-state">
+            <p>👥 Manage Members - Coming Soon</p>
+            <p class="text-muted">Add, edit, and manage gym members</p>
+          </div>
+        </div>
+
+        <!-- Manage Trainers -->
+        <div *ngIf="activeFeature === 'trainers'" class="feature-content">
+          <div class="empty-state">
+            <p>💪 Manage Trainers - Coming Soon</p>
+            <p class="text-muted">Add, edit, and manage trainers</p>
+          </div>
+        </div>
+
+        <!-- Manage Subscriptions -->
+        <div *ngIf="activeFeature === 'subscriptions'" class="feature-content">
+          <div class="empty-state">
+            <p>📋 Manage Subscriptions - Coming Soon</p>
+            <p class="text-muted">Create and manage subscription plans</p>
+          </div>
+        </div>
+
+        <!-- Manage Payments -->
+        <div *ngIf="activeFeature === 'payments'" class="feature-content">
+          <div class="empty-state">
+            <p>💳 Manage Payments - Coming Soon</p>
+            <p class="text-muted">Record and manage member payments</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

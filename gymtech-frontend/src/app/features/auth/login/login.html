@@ -17,7 +17,7 @@
   <!-- This section contains the actual login form for admins -->
   <div class="login-panel login-panel--form">
     <div class="form-wrapper">
-      <h2 class="form-title">Admin Login</h2>
+      <h2 class="form-title">Login</h2>
       
       <!-- Login Form -->
       <form class="login-form" (ngSubmit)="onLogin()">
@@ -29,7 +29,6 @@
             id="username" 
             class="form-input"
             placeholder="Enter your username or email"
-            required
           />
         </div>
 
@@ -41,12 +40,15 @@
             id="password" 
             class="form-input"
             placeholder="Enter your password"
-            required
           />
         </div>
 
         <!-- Login Button -->
-        <button type="submit" class="btn btn-primary">
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          (click)="onLogin()"
+        >
           Log In
         </button>
       </form>

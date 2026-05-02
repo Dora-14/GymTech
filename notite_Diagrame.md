@@ -30,5 +30,5 @@ We didn’t use inheritance because each class has a different role in the syste
 Initially, we modeled only the Admin role, but since the system is role-based, we extended the Use Case Diagram to include Receptionist, Trainer, and Member, each with specific permissions.
 
 
-**The Architecture Diagram** illustrates the layered structure of the Gym Membership Management System. The presentation layer is implemented using Angular, the business logic layer is developed in C#/.NET, the data access layer uses Entity Framework Core and the Repository Pattern, and persistent data is stored in a SQL database. This structure ensures modularity, maintainability, and separation of responsibilities.
+**The Architecture Diagram** illustrates the layered structure of the Gym Membership Management System. The presentation layer is implemented using Angular and provides role-based access for different users (Admin, Receptionist, Trainer, Member). The business logic layer is developed in C#/.NET and includes services for handling application logic, including authentication and user account management. The data access layer uses Entity Framework Core and the Repository Pattern, and persistent data is stored in a SQL database. This structure ensures modularity, maintainability, and separation of responsibilities.
 

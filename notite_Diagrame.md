@@ -28,7 +28,7 @@ We didn’t use inheritance because each class has a different role in the syste
 
 
 **The Use Case Diagram** illustrates the main interactions between the administrator and the Gym Membership Management System. The administrator can manage members, subscriptions, payments, trainers, attendance, and reports through the system.
-
+Initially, we modeled only the Admin role, but since the system is role-based, we extended the Use Case Diagram to include Receptionist, Trainer, and Member, each with specific permissions.
 
 
 **The Architecture Diagram** illustrates the layered structure of the Gym Membership Management System. The presentation layer is implemented using Angular, the business logic layer is developed in C#/.NET, the data access layer uses Entity Framework Core and the Repository Pattern, and persistent data is stored in a SQL database. This structure ensures modularity, maintainability, and separation of responsibilities.

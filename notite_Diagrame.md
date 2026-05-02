@@ -18,8 +18,12 @@
 
 
 
-**The UML diagram** presents the main entities of the system and the relationships between them. The one-to-many relationships reflect the data history, while the many-to-many relationship between Member and Trainer is implemented through the intermediate class MemberTrainer.
-In the UML diagram, association relationships of type one-to-many and many-to-many were used, as they best describe the structure of the application. Inheritance was not introduced because the main classes have different responsibilities and do not naturally derive from one another.
+**The UML diagram** : This diagram shows the main parts of our system and how they are connected.
+We added a UserAccount class to handle login and roles, like Admin, Receptionist, Trainer, and Member. Depending on the role, a user can be linked to a Member or a Trainer, but not necessarily to both.
+(Pentru fiecare UserAccount:poate exista 0 Member (ex: Admin, Receptionist) sau 1 Member; DAR:fiecare Member ARE EXACT 1 UserAccount)
+The main functionality is around Members, Trainers, Subscriptions, Payments, and Attendance. A member can have multiple subscriptions, payments, and attendance records, which is why we use one-to-many relationships.
+The connection between Members and Trainers is many-to-many, so we used an extra class called MemberTrainer to manage that.
+We didn’t use inheritance because each class has a different role in the system and they don’t really extend each other.
 
 
 

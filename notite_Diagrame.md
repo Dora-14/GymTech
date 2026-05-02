@@ -14,8 +14,7 @@
 
 
 
-**The ERD illustrates** the database structure of the Gym Membership Management System. It includes the main entities of the application and their relationships. One-to-many relationships are used for subscriptions, payments, and attendance records, while the many-to-many relationship between members and trainers is implemented through the MemberTrainer junction table.
-
+**The ERD**shows how the database is organized. We added a UserAccount table for login and roles. Each member and trainer is linked to a user account. Members can have multiple subscriptions, payments, and attendance records. The connection between members and trainers is many-to-many and is handled using the MemberTrainer table.
 
 
 **The UML diagram** : This diagram shows the main parts of our system and how they are connected.

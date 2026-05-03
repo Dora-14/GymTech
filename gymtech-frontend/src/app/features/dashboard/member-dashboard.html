@@ -1,0 +1,132 @@
+<!-- DASHBOARD CONTAINER -->
+<div class="dashboard-container">
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="dashboard-navbar">
+    <div class="navbar-brand">
+      <h1 class="navbar-title">GymTech</h1>
+      <p class="navbar-subtitle">Member Dashboard</p>
+    </div>
+    <div class="navbar-actions">
+      <span class="user-greeting">Welcome, {{ memberName }}</span>
+      <button class="btn btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="dashboard-content">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <!-- Dashboard Home -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'home'"
+          (click)="navigateTo('home')"
+        >
+          <span class="sidebar-icon">🏠</span>
+          <span class="sidebar-label">Dashboard Home</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-title">Account</div>
+
+        <!-- View Profile -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'profile'"
+          (click)="navigateTo('profile')"
+        >
+          <span class="sidebar-icon">👤</span>
+          <span class="sidebar-label">View Profile</span>
+        </button>
+
+        <!-- View Subscription Status -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'subscription'"
+          (click)="navigateTo('subscription')"
+        >
+          <span class="sidebar-icon">📋</span>
+          <span class="sidebar-label">Subscription Status</span>
+        </button>
+
+        <!-- View Payment History -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'payments'"
+          (click)="navigateTo('payments')"
+        >
+          <span class="sidebar-icon">💳</span>
+          <span class="sidebar-label">Payment History</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+      <div class="page-header">
+        <h2 class="page-title">{{ getPageTitle() }}</h2>
+      </div>
+
+      <div class="page-content">
+        <!-- Home Page -->
+        <div *ngIf="activeFeature === 'home'" class="feature-content">
+          <div class="welcome-card">
+            <h3>Welcome to GymTech Member Dashboard</h3>
+            <p>
+              Manage your gym membership and stay updated with your account details.
+              Use the sidebar to navigate through your account information.
+            </p>
+            <div class="quick-stats">
+              <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div class="stat-info">
+                  <div class="stat-label">Current Subscription</div>
+                  <div class="stat-value">Active</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-info">
+                  <div class="stat-label">Days Remaining</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💳</div>
+                <div class="stat-info">
+                  <div class="stat-label">Next Payment Due</div>
+                  <div class="stat-value">--</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View Profile -->
+        <div *ngIf="activeFeature === 'profile'" class="feature-content">
+          <div class="empty-state">
+            <p>👤 View Profile</p>
+            <p class="text-muted">Your profile information will be displayed here</p>
+          </div>
+        </div>
+
+        <!-- View Subscription Status -->
+        <div *ngIf="activeFeature === 'subscription'" class="feature-content">
+          <div class="empty-state">
+            <p>📋 Subscription Status</p>
+            <p class="text-muted">Your subscription details will be displayed here</p>
+          </div>
+        </div>
+
+        <!-- View Payment History -->
+        <div *ngIf="activeFeature === 'payments'" class="feature-content">
+          <div class="empty-state">
+            <p>💳 Payment History</p>
+            <p class="text-muted">Your payment history will be displayed here</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

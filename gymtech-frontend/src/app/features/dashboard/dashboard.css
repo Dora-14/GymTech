@@ -182,22 +182,23 @@
 }
 
 .welcome-card {
-  background-color: white;
+  background-color: #1a1a1a;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(233, 30, 99, 0.15);
   margin-bottom: 2rem;
+  border-left: 4px solid #e91e63;
 }
 
 .welcome-card h3 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
-  color: #333;
+  color: #e91e63;
 }
 
 .welcome-card p {
   margin: 0 0 1.5rem 0;
-  color: #666;
+  color: #b3b3b3;
   line-height: 1.6;
 }
 
@@ -208,10 +209,9 @@
 }
 
 .stat-card {
-  background-color: #f9f9f9;
   padding: 1.5rem;
   border-radius: 6px;
-  border-left: 4px solid #00d4ff;
+  border-left: 4px solid #e91e63;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -228,7 +228,7 @@
 
 .stat-label {
   font-size: 0.85rem;
-  color: #666;
+  color: #999;
   margin-bottom: 0.25rem;
 }
 
@@ -239,18 +239,18 @@
 }
 
 .empty-state {
-  background-color: white;
+  background-color: #1a1a1a;
   padding: 3rem 2rem;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(233, 30, 99, 0.15);
 }
 
 .empty-state p:first-child {
   margin: 0 0 0.5rem 0;
   font-size: 1.3rem;
   font-weight: 600;
-  color: #333;
+  color: #e91e63;
 }
 
 .empty-state p:last-child {
@@ -276,14 +276,14 @@
 }
 
 .btn-primary {
-  background-color: #00d4ff;
-  color: #1a1a2e;
+  background-color: #e91e63;
+  color: white;
 }
 
 .btn-primary:hover {
-  background-color: #00b8d4;
+  background-color: #c2185b;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
 }
 
 /* RESPONSIVE */

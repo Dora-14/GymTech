@@ -102,6 +102,16 @@
           <span class="sidebar-icon">💳</span>
           <span class="sidebar-label">Manage Payments</span>
         </button>
+
+        <!-- Manage Users & Roles -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'users-roles'"
+          (click)="navigateTo('users-roles')"
+        >
+          <span class="sidebar-icon">👤</span>
+          <span class="sidebar-label">Manage Users & Roles</span>
+        </button>
       </nav>
     </aside>
 

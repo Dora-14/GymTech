@@ -9,7 +9,7 @@ namespace GymManagementSystem.Api.Services
         private readonly AppDbContext _context;
         public AuthService(AppDbContext context) { _context = context; }
 
-        public async Task<AdminUser?> LogInAsync(string username, string password)
+        public async Task<UserAccount?> LogInAsync(string username, string password)
         {
             return await _context.AdminUsers
                 .FirstOrDefaultAsync(u => u.Username == username && u.PasswordHash == password);

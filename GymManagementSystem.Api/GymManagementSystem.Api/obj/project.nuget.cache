@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/cCj4KfIrWQ=",
+  "dgSpecHash": "SfZ3fw7H1A0=",
   "success": true,
-  "projectFilePath": "D:\\School\\UTCN\\An 3\\Semestru 2\\II\\Proiect\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj",
+  "projectFilePath": "C:\\Users\\Simi\\Downloads\\GymTech-backend-project\\GymTech-backend-project\\GymManagementSystem.Api\\GymManagementSystem.Api\\GymManagementSystem.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Simi\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Simi\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

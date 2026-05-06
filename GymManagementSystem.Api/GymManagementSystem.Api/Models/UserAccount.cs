@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GymManagementSystem.Api.Models
 {
-    public class AdminUser
+    [Table("AdminUsers")]
+    public class UserAccount
     {
         [Key]
         public int UserId { get; set; }

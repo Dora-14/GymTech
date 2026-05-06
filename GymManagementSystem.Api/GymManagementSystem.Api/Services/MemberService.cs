@@ -51,5 +51,23 @@ namespace GymManagementSystem.Api.Services
                 await _context.SaveChangesAsync();
             }
         }
+        public async Task<Member?> UpdateAsync(int id, Member updatedMember)
+        {
+            var existingMember = await _context.Members.FindAsync(id);
+
+            if (existingMember == null)
+            {
+                return null; 
+            }
+
+            existingMember.FullName = updatedMember.FullName;
+            existingMember.Email = updatedMember.Email;
+            existingMember.Phone = updatedMember.Phone;
+            existingMember.DateOfBirth = updatedMember.DateOfBirth;
+
+            await _context.SaveChangesAsync();
+
+            return existingMember;
+        }
     }
 }

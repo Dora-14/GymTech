@@ -43,5 +43,18 @@ namespace GymManagementSystem.Api.Controllers
             await _memberService.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Member memberUpdate)
+        {
+            var updatedMember = await _memberService.UpdateAsync(id, memberUpdate);
+
+            if (updatedMember == null)
+            {
+                return NotFound($"Eroare: Nu am găsit niciun membru cu ID-ul {id}");
+            }
+
+            return Ok(updatedMember);
+        }
     }
 }

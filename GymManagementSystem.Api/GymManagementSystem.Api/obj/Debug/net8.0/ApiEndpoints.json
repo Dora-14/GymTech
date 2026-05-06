@@ -115,6 +115,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "GymManagementSystem.Api.Controllers.MemberController",
+    "Method": "Update",
+    "RelativePath": "api/Member/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "memberUpdate",
+        "Type": "GymManagementSystem.Api.Models.Member",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "GymManagementSystem.Api.Controllers.PaymentController",
     "Method": "PostPayment",
     "RelativePath": "api/Payment",

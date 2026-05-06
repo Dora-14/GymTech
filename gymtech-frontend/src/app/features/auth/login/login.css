@@ -33,9 +33,6 @@
    ================================================ */
 
 .login-panel {
-  /* Take up equal width (50% each due to flex layout) */
-  flex: 1;
-  
   /* Center content inside each panel */
   display: flex;
   justify-content: center;
@@ -46,10 +43,13 @@
 }
 
 /* ================================================
-   WELCOME PANEL - Left side (left half of the screen)
+   WELCOME PANEL - Left side (takes up 70% of the screen)
    ================================================ */
 
 .login-panel--welcome {
+  /* Take up 70% of the screen width */
+  flex: 0 0 70%;
+  
   /* Semi-transparent dark background to make text readable over the background image */
   background-color: rgba(0, 0, 0, 0.5);
   
@@ -62,7 +62,7 @@
 .welcome-content {
   /* Set max width for better text readability */
   max-width: 400px;
-  color: white;
+  color: #87CEEB;
   text-align: center;
 }
 
@@ -90,12 +90,15 @@
 }
 
 /* ================================================
-   FORM PANEL - Right side (right half of the screen)
+   FORM PANEL - Right side (takes up 30% of the screen)
    ================================================ */
 
 .login-panel--form {
-  /* Light background for the form section */
-  background-color: rgba(255, 255, 255, 0.95);
+  /* Take up 30% of the screen width */
+  flex: 0 0 30%;
+  
+  /* Dark pink gradient background matching the GymTech brand */
+  background: linear-gradient(135deg, rgba(106, 27, 95, 0.7) 0%, rgba(173, 20, 87, 0.7) 100%);
   
   /* Ensures form content is properly centered */
   display: flex;
@@ -113,7 +116,7 @@
   /* Heading for the form section */
   font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
+  color: #87CEEB;
   text-align: center;
   margin: 0 0 1.5rem 0;
 }
@@ -140,16 +143,18 @@
   /* Label styling */
   font-size: 0.9rem;
   font-weight: 600;
-  color: #555;
+  color: #87CEEB;
 }
 
 .form-input {
   /* Input field styling */
   padding: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid #87CEEB;
   border-radius: 4px;
   font-size: 1rem;
   font-family: inherit;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   
   /* Add smooth transition for focus state */
   transition: border-color 0.3s ease;
@@ -158,8 +163,8 @@
 /* Focus state - makes the input more prominent when clicked */
 .form-input:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  border-color: #87CEEB;
+  box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.2);
 }
 
 /* ================================================
@@ -181,15 +186,15 @@
 
 .btn-primary {
   /* Primary button (login button) styling */
-  background-color: #007bff;
-  color: white;
+  background-color: #87CEEB;
+  color: #ffffff;
 }
 
 /* Hover state - provides visual feedback when user hovers over the button */
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #0099cc;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 86, 179, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 191, 255, 0.4);
 }
 
 /* Active state - provides feedback when button is clicked */
@@ -206,19 +211,19 @@
   text-align: center;
   margin-top: 1.5rem;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .auth-text {
   /* Text describing the sign-up option */
   margin: 0;
-  color: #666;
+  color: #87CEEB;
   font-size: 0.9rem;
 }
 
 .auth-link {
   /* Styled link for sign-up */
-  color: #007bff;
+  color: #87CEEB;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
@@ -226,141 +231,8 @@
 
 .auth-link:hover {
   /* Hover effect for the link */
-  color: #0056b3;
+  color: #1e90ff;
   text-decoration: underline;
-}
-
-/* ================================================
-   MODAL OVERLAY - Semi-transparent background
-   ================================================ */
-
-.modal-overlay {
-  /* Create a semi-transparent dark background */
-  /* This darkens everything behind the modal to focus user attention */
-  background-color: rgba(0, 0, 0, 0.6);
-  
-  /* Position it to cover the entire screen */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  
-  /* Make sure it appears above the login form but below the modal */
-  z-index: 999;
-}
-
-/* ================================================
-   MODAL - The popup form container
-   ================================================ */
-
-.modal {
-  /* Position the modal in the center of the screen */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  
-  /* Center the modal using transform */
-  /* This is better than margins because it works regardless of modal size */
-  transform: translate(-50%, -50%);
-  
-  /* Make sure the modal appears on top of everything */
-  z-index: 1000;
-  
-  /* Set modal dimensions */
-  width: 90%;
-  max-width: 450px;
-  
-  /* White background for the modal */
-  background-color: white;
-  
-  /* Add rounded corners for a modern look */
-  border-radius: 8px;
-  
-  /* Add shadow for depth */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  
-  /* Smooth animation when modal appears */
-  animation: slideIn 0.3s ease-out;
-}
-
-/* ================================================
-   MODAL ANIMATION - Smooth entrance effect
-   ================================================ */
-
-@keyframes slideIn {
-  from {
-    /* Start: modal is slightly above and invisible */
-    opacity: 0;
-    transform: translate(-50%, -50%) translateY(-20px);
-  }
-  to {
-    /* End: modal is centered and visible */
-    opacity: 1;
-    transform: translate(-50%, -50%) translateY(0);
-  }
-}
-
-/* ================================================
-   MODAL HEADER - Title and close button section
-   ================================================ */
-
-.modal-header {
-  /* Create a flex container to spread title and close button */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  
-  /* Add padding and border at bottom to separate from form */
-  padding: 1.5rem;
-  border-bottom: 1px solid #eee;
-}
-
-.modal-title {
-  /* Style for the modal title */
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  margin: 0;
-}
-
-.modal-close {
-  /* X button styling */
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: #999;
-  cursor: pointer;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  /* Smooth color change on hover */
-  transition: color 0.3s ease;
-}
-
-.modal-close:hover {
-  /* Darker color when hovering over close button */
-  color: #333;
-}
-
-/* ================================================
-   MODAL BODY - Contains the sign-up form
-   ================================================ */
-
-.modal-body {
-  /* Add padding for content */
-  padding: 1.5rem;
-}
-
-.signup-form {
-  /* Form layout: stack fields vertically */
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 /* ================================================
@@ -385,15 +257,6 @@
 }
 
 /* ================================================
-   MODAL-SPECIFIC BUTTON - Button inside modal
-   ================================================ */
-
-.btn-modal {
-  /* Slightly more spacing in modal for better visibility */
-  margin-top: 1rem;
-}
-
-/* ================================================
    RESPONSIVE DESIGN - Mobile and tablet styles
    ================================================ */
 
@@ -410,23 +273,21 @@
     padding: 1.5rem;
   }
   
+  .login-panel--welcome {
+    /* Allow welcome panel to flex more on mobile */
+    flex: 0 0 auto;
+  }
+  
+  .login-panel--form {
+    /* Form panel takes up remaining space */
+    flex: 1;
+  }
+  
   .welcome-title {
     font-size: 1.8rem;
   }
   
   .form-title {
     font-size: 1.5rem;
-  }
-  
-  /* Modal adjustments for mobile */
-  .modal {
-    /* Take up more of the screen width on mobile */
-    width: 95%;
-    max-width: none;
-  }
-  
-  .modal-body {
-    /* Reduce padding on mobile for more space */
-    padding: 1rem;
   }
 }

@@ -1,0 +1,168 @@
+<!-- DASHBOARD CONTAINER -->
+<div class="dashboard-container">
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="dashboard-navbar">
+    <div class="navbar-brand">
+      <h1 class="navbar-title">GymTech</h1>
+      <p class="navbar-subtitle">Receptionist Dashboard</p>
+    </div>
+    <div class="navbar-actions">
+      <span class="user-greeting">Welcome, {{ receptionistName }}</span>
+      <button class="btn btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="dashboard-content">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <!-- Dashboard Home -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'home'"
+          (click)="navigateTo('home')"
+        >
+          <span class="sidebar-icon">🏠</span>
+          <span class="sidebar-label">Dashboard Home</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-title">Operations</div>
+
+        <!-- Manage Members -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'members'"
+          (click)="navigateTo('members')"
+        >
+          <span class="sidebar-icon">👥</span>
+          <span class="sidebar-label">Manage Members</span>
+        </button>
+
+        <!-- Manage Subscriptions -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'subscriptions'"
+          (click)="navigateTo('subscriptions')"
+        >
+          <span class="sidebar-icon">📋</span>
+          <span class="sidebar-label">Manage Subscriptions</span>
+        </button>
+
+        <!-- Search & Filter -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'search'"
+          (click)="navigateTo('search')"
+        >
+          <span class="sidebar-icon">🔍</span>
+          <span class="sidebar-label">Search & Filter</span>
+        </button>
+
+        <!-- Record Attendance -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'attendance'"
+          (click)="navigateTo('attendance')"
+        >
+          <span class="sidebar-icon">✓</span>
+          <span class="sidebar-label">Record Attendance</span>
+        </button>
+
+        <!-- Manage Payments -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'payments'"
+          (click)="navigateTo('payments')"
+        >
+          <span class="sidebar-icon">💳</span>
+          <span class="sidebar-label">Manage Payments</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+      <div class="page-header">
+        <h2 class="page-title">{{ getPageTitle() }}</h2>
+      </div>
+
+      <div class="page-content">
+        <!-- Home Page -->
+        <div *ngIf="activeFeature === 'home'" class="feature-content">
+          <div class="welcome-card">
+            <h3>Welcome to GymTech Receptionist Dashboard</h3>
+            <p>
+              Manage daily gym operations efficiently. Use the sidebar to navigate
+              through your assigned features and tasks.
+            </p>
+            <div class="quick-stats">
+              <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                  <div class="stat-label">Total Members</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">✓</div>
+                <div class="stat-info">
+                  <div class="stat-label">Today's Attendance</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💳</div>
+                <div class="stat-info">
+                  <div class="stat-label">Pending Payments</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manage Members -->
+        <div *ngIf="activeFeature === 'members'" class="feature-content">
+          <div class="empty-state">
+            <p>👥 Manage Members</p>
+            <p class="text-muted">Member management interface will be displayed here</p>
+          </div>
+        </div>
+
+        <!-- Manage Subscriptions -->
+        <div *ngIf="activeFeature === 'subscriptions'" class="feature-content">
+          <div class="empty-state">
+            <p>📋 Manage Subscriptions</p>
+            <p class="text-muted">Subscription management interface will be displayed here</p>
+          </div>
+        </div>
+
+        <!-- Search & Filter -->
+        <div *ngIf="activeFeature === 'search'" class="feature-content">
+          <div class="empty-state">
+            <p>🔍 Search & Filter Data</p>
+            <p class="text-muted">Search and filter interface will be displayed here</p>
+          </div>
+        </div>
+
+        <!-- Record Attendance -->
+        <div *ngIf="activeFeature === 'attendance'" class="feature-content">
+          <div class="empty-state">
+            <p>✓ Record Attendance</p>
+            <p class="text-muted">Attendance recording interface will be displayed here</p>
+          </div>
+        </div>
+
+        <!-- Manage Payments -->
+        <div *ngIf="activeFeature === 'payments'" class="feature-content">
+          <div class="empty-state">
+            <p>💳 Manage Payments</p>
+            <p class="text-muted">Payment management interface will be displayed here</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

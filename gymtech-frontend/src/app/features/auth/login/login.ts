@@ -39,15 +39,15 @@ import { Router } from '@angular/router';
 })
 export class Login {
   /**
-   * Modal State Flag
+   * Current Auth Page State
    * 
-   * Controls whether the sign-up modal is visible or hidden.
-   * - true: Modal is open and visible
-   * - false: Modal is closed and hidden
+   * Controls which page/form is displayed.
+   * - 'login': Shows the login form
+   * - 'signup': Shows the sign-up form
    * 
-   * This is used in the template with *ngIf to show/hide the modal overlay and modal box
+   * This is used in the template with *ngIf to show/hide the appropriate form
    */
-  isSignupModalOpen: boolean = false;
+  currentPage: 'login' | 'signup' = 'login';
 
   /**
    * Constructor - Dependency Injection
@@ -56,41 +56,31 @@ export class Login {
   constructor(private router: Router) {}
 
   /**
-   * openSignupModal() method
+   * goToSignup() method
    * 
-   * Called when the user clicks "Sign up here" button
+   * Called when the user clicks "Sign up here" link on login form
    * 
    * Purpose:
-   * - Opens the sign-up modal by setting the flag to true
-   * - The *ngIf in the template will detect this change and display the modal
-   * 
-   * Future enhancement:
-   * - Reset form fields when opening modal
-   * - Prevent body scroll when modal is open
+   * - Switches the page to show the signup form
+   * - The *ngIf in the template will detect this change and display the signup form
    */
-  openSignupModal(): void {
-    console.log('Opening sign-up modal');
-    this.isSignupModalOpen = true;
+  goToSignup(): void {
+    console.log('Switching to sign-up page');
+    this.currentPage = 'signup';
   }
 
   /**
-   * closeSignupModal() method
+   * goToLogin() method
    * 
-   * Called when:
-   * - User clicks the X button in the modal header
-   * - User clicks the dark overlay behind the modal
+   * Called when the user clicks the back button or after successful signup
    * 
    * Purpose:
-   * - Closes the sign-up modal by setting the flag to false
-   * - The *ngIf in the template will detect this change and hide the modal
-   * 
-   * Future enhancement:
-   * - Show confirmation if user has entered data (prevent accidental loss)
-   * - Reset form fields
+   * - Switches the page back to show the login form
+   * - The *ngIf in the template will detect this change and display the login form
    */
-  closeSignupModal(): void {
-    console.log('Closing sign-up modal');
-    this.isSignupModalOpen = false;
+  goToLogin(): void {
+    console.log('Switching back to login page');
+    this.currentPage = 'login';
   }
 
   /**
@@ -114,12 +104,8 @@ export class Login {
   /**
    * onSignup() method
    * 
-   * This is called when the user clicks the "Create Account" button in the modal.
-   * Currently, it's a placeholder that will be expanded with:
-   * - Form validation (all fields required, email format, password matching, etc.)
-   * - API call to create a new user account
-   * - Error handling
-   * - Success message and redirect to login
+   * This is called when the user clicks the "Create Account" button on the signup form.
+   * After account creation, it switches back to the login page.
    * 
    * Form fields to collect:
    * - First Name: user's first name for identification
@@ -133,14 +119,14 @@ export class Login {
    * - Inject AuthService and call signup(userData)
    * - Validate all fields before sending to API
    * - Validate that password and confirm password match
-   * - Handle success: close modal, show success message, redirect to login
-   * - Handle error: display error message in the modal
+   * - Handle success: show success message, redirect to login
+   * - Handle error: display error message in the form
    */
   onSignup(): void {
-    console.log('Sign-up button clicked');
+    console.log('Account created successfully - Returning to login');
     // TODO: Add sign-up logic here
     // This will integrate with an AuthService once we create it
-    // For now, just close the modal and log the action
-    this.closeSignupModal();
+    // After successful account creation, switch back to login page
+    this.goToLogin();
   }
 }

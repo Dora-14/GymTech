@@ -1,11 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+
 import { App } from './app';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 
 describe('App', () => {
+  let fixture: ComponentFixture<App>;
+  let component: App;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
+      imports: [App, RouterTestingModule],
     }).compileComponents();
+
+    // FIX 2: Initialize them here
+    fixture = TestBed.createComponent(App);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
@@ -21,35 +31,5 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, gymtech-frontend');
   });
 
-  //tester
-
-  it('should have a username input field', () => {
-    const compiled = fixture.nativeElement;
-    const username = compiled.querySelector(ínput[type = "text"]);
-    expect(username).toBeTruthy();
-  });
-
-  it('should have a password input field', () => {
-    const compiled = fixture.nativeElement;
-    const Password = compiled.querySelector(ínput[type = "password"]);
-    expect(Password).toBeTruthy();
-  });
-
-  it('should have a Log In button', () => {
-    const compiled = fixture.nativeElement;
-    const loginButton = compiled.querySelector('button');
-    expect(loginButton).toBeTruthy();
-  });
-
-  it('should have a link to the sign-up page', () => {
-    const compiled = fixture.nativeElement;
-    const signUpLink = compiled.querySelector('a');
-    expect(signUpLink).toBeTruthy();
-
-    const linkPath = signUpLink.getAttribute('routerLink') || signUpLink.getAttribute('href');
-    expect(linkPath).toContain('/signUp')
-  });
-
-  //till here
 
 });

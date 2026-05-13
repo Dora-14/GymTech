@@ -82,21 +82,21 @@
                 <div class="stat-icon">📋</div>
                 <div class="stat-info">
                   <div class="stat-label">Current Subscription</div>
-                  <div class="stat-value">Active</div>
+                  <div class="stat-value">{{ subscription.plan }}</div>
                 </div>
               </div>
               <div class="stat-card">
                 <div class="stat-icon">📅</div>
                 <div class="stat-info">
                   <div class="stat-label">Days Remaining</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ subscription.daysRemaining }}</div>
                 </div>
               </div>
               <div class="stat-card">
                 <div class="stat-icon">💳</div>
                 <div class="stat-info">
                   <div class="stat-label">Next Payment Due</div>
-                  <div class="stat-value">--</div>
+                  <div class="stat-value">{{ subscription.endDate }}</div>
                 </div>
               </div>
             </div>
@@ -105,25 +105,54 @@
 
         <!-- View Profile -->
         <div *ngIf="activeFeature === 'profile'" class="feature-content">
-          <div class="empty-state">
-            <p>👤 View Profile</p>
-            <p class="text-muted">Your profile information will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header"><h3>My Profile</h3></div>
+            <div class="profile-card">
+              <div class="profile-row"><span class="profile-label">First Name</span><span class="profile-value">{{ profile.firstName }}</span></div>
+              <div class="profile-row"><span class="profile-label">Last Name</span><span class="profile-value">{{ profile.lastName }}</span></div>
+              <div class="profile-row"><span class="profile-label">Email</span><span class="profile-value">{{ profile.email }}</span></div>
+              <div class="profile-row"><span class="profile-label">Phone</span><span class="profile-value">{{ profile.phone }}</span></div>
+              <div class="profile-row"><span class="profile-label">Member Since</span><span class="profile-value">{{ profile.joinDate }}</span></div>
+              <div class="profile-row"><span class="profile-label">Assigned Trainer</span><span class="profile-value">{{ profile.trainer }}</span></div>
+            </div>
           </div>
         </div>
 
         <!-- View Subscription Status -->
         <div *ngIf="activeFeature === 'subscription'" class="feature-content">
-          <div class="empty-state">
-            <p>📋 Subscription Status</p>
-            <p class="text-muted">Your subscription details will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header"><h3>Subscription Details</h3></div>
+            <div class="profile-card">
+              <div class="profile-row"><span class="profile-label">Plan</span><span class="profile-value">{{ subscription.plan }}</span></div>
+              <div class="profile-row"><span class="profile-label">Status</span><span class="profile-value"><span class="badge badge--active">{{ subscription.status }}</span></span></div>
+              <div class="profile-row"><span class="profile-label">Start Date</span><span class="profile-value">{{ subscription.startDate }}</span></div>
+              <div class="profile-row"><span class="profile-label">End Date</span><span class="profile-value">{{ subscription.endDate }}</span></div>
+              <div class="profile-row"><span class="profile-label">Days Remaining</span><span class="profile-value">{{ subscription.daysRemaining }}</span></div>
+              <div class="profile-row"><span class="profile-label">Price Paid</span><span class="profile-value">${{ subscription.price }}</span></div>
+            </div>
+            <div class="table-header" style="margin-top: 1.5rem;"><h3>Included Features</h3></div>
+            <ul class="feature-list">
+              <li *ngFor="let feature of subscription.features" class="feature-item">✓ {{ feature }}</li>
+            </ul>
           </div>
         </div>
 
         <!-- View Payment History -->
         <div *ngIf="activeFeature === 'payments'" class="feature-content">
-          <div class="empty-state">
-            <p>💳 Payment History</p>
-            <p class="text-muted">Your payment history will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header"><h3>Payment History</h3></div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Date</th><th>Plan</th><th>Amount</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let payment of paymentHistory">
+                  <td>{{ payment.id }}</td><td>{{ payment.date }}</td><td>{{ payment.plan }}</td>
+                  <td>${{ payment.amount }}</td>
+                  <td><span class="badge badge--active">{{ payment.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

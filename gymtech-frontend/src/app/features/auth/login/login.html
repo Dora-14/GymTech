@@ -1,7 +1,5 @@
 <div class="login-container">
   <!-- LEFT PANEL: Welcome Section -->
-  <!-- This section displays a welcome message to users. 
-       It's perfect for displaying branding, app description, or promotional content later -->
   <div class="login-panel login-panel--welcome">
     <div class="welcome-content">
       <h1 class="welcome-title">Welcome to GymTech</h1>
@@ -14,56 +12,58 @@
   </div>
 
   <!-- RIGHT PANEL: Authentication Form Section -->
-  <!-- Shows either login or signup form based on currentPage state -->
   <div class="login-panel login-panel--form">
+
     <!-- LOGIN FORM -->
     <div class="form-wrapper" *ngIf="currentPage === 'login'">
       <h2 class="form-title">Login</h2>
-      
-      <!-- Login Form -->
+
+      <!-- Error / Success Messages -->
+      <div class="alert alert--error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
       <form class="login-form" (ngSubmit)="onLogin()">
-        <!-- Username Field -->
+        <!-- Email Field -->
         <div class="form-group">
-          <label for="username" class="form-label">Username or Email</label>
-          <input 
-            type="text" 
-            id="username" 
+          <label for="login-email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="login-email"
             class="form-input"
-            placeholder="Enter your username or email"
+            placeholder="Enter your email"
+            [(ngModel)]="loginEmail"
+            name="loginEmail"
+            required
           />
         </div>
 
         <!-- Password Field -->
         <div class="form-group">
-          <label for="password" class="form-label">Password</label>
-          <input 
-            type="password" 
-            id="password" 
+          <label for="login-password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="login-password"
             class="form-input"
             placeholder="Enter your password"
+            [(ngModel)]="loginPassword"
+            name="loginPassword"
+            required
           />
         </div>
 
         <!-- Login Button -->
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           class="btn btn-primary"
-          (click)="onLogin()"
+          [disabled]="isLoading"
         >
-          Log In
+          {{ isLoading ? 'Logging in...' : 'Log In' }}
         </button>
       </form>
 
-      <!-- Sign-up Link Section -->
-      <!-- This will be expanded later for account registration flow -->
       <div class="auth-footer">
         <p class="auth-text">
           Don't have an account yet?
-          <button 
-            type="button"
-            class="auth-link"
-            (click)="goToSignup()"
-          >
+          <button type="button" class="auth-link" (click)="goToSignup()">
             Sign up here
           </button>
         </p>
@@ -73,97 +73,107 @@
     <!-- SIGNUP FORM -->
     <div class="form-wrapper" *ngIf="currentPage === 'signup'">
       <h2 class="form-title">Create Account</h2>
-      
-      <!-- Sign-up Form -->
+
+      <!-- Error / Success Messages -->
+      <div class="alert alert--error"   *ngIf="errorMessage">{{ errorMessage }}</div>
+      <div class="alert alert--success" *ngIf="successMessage">{{ successMessage }}</div>
+
       <form class="login-form" (ngSubmit)="onSignup()">
 
-        <!-- First Name Field -->
+        <!-- First Name -->
         <div class="form-group">
           <label for="signup-firstname" class="form-label">First Name</label>
-          <input 
-            type="text" 
-            id="signup-firstname" 
+          <input
+            type="text"
+            id="signup-firstname"
             class="form-input"
             placeholder="Enter your first name"
+            [(ngModel)]="signupFirstName"
+            name="signupFirstName"
             required
           />
         </div>
 
-        <!-- Last Name Field -->
+        <!-- Last Name -->
         <div class="form-group">
           <label for="signup-lastname" class="form-label">Last Name</label>
-          <input 
-            type="text" 
-            id="signup-lastname" 
+          <input
+            type="text"
+            id="signup-lastname"
             class="form-input"
             placeholder="Enter your last name"
+            [(ngModel)]="signupLastName"
+            name="signupLastName"
             required
           />
         </div>
 
-        <!-- Email Field -->
+        <!-- Email -->
         <div class="form-group">
           <label for="signup-email" class="form-label">Email</label>
-          <input 
-            type="email" 
-            id="signup-email" 
+          <input
+            type="email"
+            id="signup-email"
             class="form-input"
             placeholder="Enter your email"
+            [(ngModel)]="signupEmail"
+            name="signupEmail"
             required
           />
         </div>
 
-        <!-- Phone Number Field -->
+        <!-- Phone Number -->
         <div class="form-group">
           <label for="signup-phone" class="form-label">Phone Number</label>
-          <input 
-            type="tel" 
-            id="signup-phone" 
+          <input
+            type="tel"
+            id="signup-phone"
             class="form-input"
             placeholder="Enter your phone number"
+            [(ngModel)]="signupPhone"
+            name="signupPhone"
             required
           />
         </div>
 
-        <!-- Password Field -->
+        <!-- Password -->
         <div class="form-group">
           <label for="signup-password" class="form-label">Password</label>
-          <input 
-            type="password" 
-            id="signup-password" 
+          <input
+            type="password"
+            id="signup-password"
             class="form-input"
-            placeholder="Enter a strong password"
+            placeholder="At least 6 characters"
+            [(ngModel)]="signupPassword"
+            name="signupPassword"
             required
           />
         </div>
 
-        <!-- Confirm Password Field -->
+        <!-- Confirm Password -->
         <div class="form-group">
           <label for="signup-confirmpassword" class="form-label">Confirm Password</label>
-          <input 
-            type="password" 
-            id="signup-confirmpassword" 
+          <input
+            type="password"
+            id="signup-confirmpassword"
             class="form-input"
             placeholder="Confirm your password"
+            [(ngModel)]="signupConfirmPassword"
+            name="signupConfirmPassword"
             required
           />
         </div>
 
-        <!-- Sign-up Button -->
-        <button type="submit" class="btn btn-primary">
-          Create Account
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+          {{ isLoading ? 'Creating account...' : 'Create Account' }}
         </button>
       </form>
 
-      <!-- Login Link Section -->
       <div class="auth-footer">
         <p class="auth-text">
           Already have an account?
-          <button 
-            type="button"
-            class="auth-link"
-            (click)="goToLogin()"
-          >
+          <button type="button" class="auth-link" (click)="goToLogin()">
             Login Here
           </button>
         </p>

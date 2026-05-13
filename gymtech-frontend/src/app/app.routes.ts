@@ -4,12 +4,14 @@ import { Dashboard } from './features/dashboard/dashboard';
 import { ReceptionistDashboard } from './features/dashboard/receptionist-dashboard';
 import { TrainerDashboard } from './features/dashboard/trainer-dashboard';
 import { MemberDashboard } from './features/dashboard/member-dashboard';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: Login },
-  { path: 'dashboard', component: Dashboard },
-  { path: 'receptionist-dashboard', component: ReceptionistDashboard },
-  { path: 'trainer-dashboard', component: TrainerDashboard },
-  { path: 'member-dashboard', component: MemberDashboard }
+  { path: 'dashboard',              component: Dashboard,             canActivate: [authGuard] },
+  { path: 'receptionist-dashboard', component: ReceptionistDashboard, canActivate: [authGuard] },
+  { path: 'trainer-dashboard',      component: TrainerDashboard,      canActivate: [authGuard] },
+  { path: 'member-dashboard',       component: MemberDashboard,       canActivate: [authGuard] },
+  { path: '**', redirectTo: 'login' }
 ];

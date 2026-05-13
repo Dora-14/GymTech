@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 /**
  * Member Dashboard Component
@@ -21,42 +22,59 @@ import { RouterModule, Router } from '@angular/router';
   templateUrl: './member-dashboard.html',
   styleUrl: './member-dashboard.css',
 })
-export class MemberDashboard {
-  /**
-   * Track which feature/page is currently active
-   */
+export class MemberDashboard implements OnInit {
   activeFeature: string = 'home';
-
-  /**
-   * Store the member username for display in top bar
-   */
   memberName: string = 'Member';
 
-  constructor(private router: Router) {}
+  profile = {
+    firstName: 'Alice',
+    lastName: 'Johnson',
+    email: 'alice@email.com',
+    phone: '0721 000 001',
+    joinDate: '2025-01-15',
+    trainer: 'Marcus Lee',
+  };
 
-  /**
-   * Navigate to a specific feature/page
-   */
-  navigateTo(feature: string): void {
-    this.activeFeature = feature;
-    console.log(`Navigating to: ${feature}`);
+  subscription = {
+    plan: 'Premium',
+    startDate: '2026-05-01',
+    endDate: '2026-11-01',
+    daysRemaining: 173,
+    status: 'Active',
+    price: 139.99,
+    features: ['Full Gym Access', 'Personal Trainer', 'Nutrition Plan', 'Spa & Sauna'],
+  };
+
+  paymentHistory = [
+    { id: 1, date: '2026-05-01', plan: 'Premium (6 Months)',  amount: 139.99, status: 'Paid' },
+    { id: 2, date: '2025-11-01', plan: 'Premium (6 Months)',  amount: 139.99, status: 'Paid' },
+    { id: 3, date: '2025-08-01', plan: 'Standard (3 Months)', amount:  79.99, status: 'Paid' },
+    { id: 4, date: '2025-05-01', plan: 'Basic (1 Month)',     amount:  29.99, status: 'Paid' },
+  ];
+
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    const name = this.authService.getFirstName();
+    if (name) {
+      this.memberName = name;
+      this.profile.firstName = name;
+    }
   }
 
-  /**
-   * Logout function - redirects to login page
-   */
+  navigateTo(feature: string): void {
+    this.activeFeature = feature;
+  }
+
   logout(): void {
-    console.log('Logging out...');
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
-  /**
-   * Get the page title based on active feature
-   */
   getPageTitle(): string {
     const titles: { [key: string]: string } = {
       home: 'Dashboard Home',
-      profile: 'View Profile',
+      profile: 'My Profile',
       payments: 'Payment History',
       subscription: 'Subscription Status',
     };

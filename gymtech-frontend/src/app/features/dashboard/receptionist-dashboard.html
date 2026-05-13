@@ -102,21 +102,21 @@
                 <div class="stat-icon">👥</div>
                 <div class="stat-info">
                   <div class="stat-label">Total Members</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ stats.totalMembers }}</div>
                 </div>
               </div>
               <div class="stat-card">
-                <div class="stat-icon">✓</div>
+                <div class="stat-icon" style="color: #87CEEB;">✓</div>
                 <div class="stat-info">
                   <div class="stat-label">Today's Attendance</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ stats.todayAttendance }}</div>
                 </div>
               </div>
               <div class="stat-card">
                 <div class="stat-icon">💳</div>
                 <div class="stat-info">
                   <div class="stat-label">Pending Payments</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ stats.pendingPayments }}</div>
                 </div>
               </div>
             </div>
@@ -125,41 +125,110 @@
 
         <!-- Manage Members -->
         <div *ngIf="activeFeature === 'members'" class="feature-content">
-          <div class="empty-state">
-            <p>👥 Manage Members</p>
-            <p class="text-muted">Member management interface will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Members List</h3>
+              <button class="btn btn-primary">+ Add Member</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Subscription</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let member of members">
+                  <td>{{ member.id }}</td><td>{{ member.name }}</td><td>{{ member.email }}</td>
+                  <td>{{ member.phone }}</td><td>{{ member.subscription }}</td>
+                  <td><span class="badge" [class.badge--active]="member.status === 'Active'" [class.badge--expired]="member.status === 'Expired'">{{ member.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Manage Subscriptions -->
         <div *ngIf="activeFeature === 'subscriptions'" class="feature-content">
-          <div class="empty-state">
-            <p>📋 Manage Subscriptions</p>
-            <p class="text-muted">Subscription management interface will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Subscription Plans</h3>
+              <button class="btn btn-primary">+ Add Plan</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Plan Name</th><th>Duration</th><th>Price</th><th>Features</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of subscriptions">
+                  <td>{{ sub.id }}</td><td>{{ sub.name }}</td><td>{{ sub.duration }}</td>
+                  <td>${{ sub.price }}</td><td>{{ sub.features }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Search & Filter -->
         <div *ngIf="activeFeature === 'search'" class="feature-content">
-          <div class="empty-state">
-            <p>🔍 Search & Filter Data</p>
-            <p class="text-muted">Search and filter interface will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header"><h3>Search Members</h3></div>
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search by name, email or phone..." />
+              <button class="btn btn-primary">Search</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Subscription</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let member of members">
+                  <td>{{ member.id }}</td><td>{{ member.name }}</td><td>{{ member.email }}</td>
+                  <td>{{ member.phone }}</td><td>{{ member.subscription }}</td>
+                  <td><span class="badge" [class.badge--active]="member.status === 'Active'" [class.badge--expired]="member.status === 'Expired'">{{ member.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Record Attendance -->
         <div *ngIf="activeFeature === 'attendance'" class="feature-content">
-          <div class="empty-state">
-            <p>✓ Record Attendance</p>
-            <p class="text-muted">Attendance recording interface will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Today's Attendance</h3>
+              <button class="btn btn-primary">+ Check-In Member</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Member</th><th>Check-In</th><th>Check-Out</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let record of attendance">
+                  <td>{{ record.id }}</td><td>{{ record.member }}</td>
+                  <td>{{ record.checkIn }}</td><td>{{ record.checkOut }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Manage Payments -->
         <div *ngIf="activeFeature === 'payments'" class="feature-content">
-          <div class="empty-state">
-            <p>💳 Manage Payments</p>
-            <p class="text-muted">Payment management interface will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Payment Records</h3>
+              <button class="btn btn-primary">+ Record Payment</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Member</th><th>Plan</th><th>Amount</th><th>Date</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let payment of payments">
+                  <td>{{ payment.id }}</td><td>{{ payment.member }}</td><td>{{ payment.plan }}</td>
+                  <td>${{ payment.amount }}</td><td>{{ payment.date }}</td>
+                  <td><span class="badge" [class.badge--active]="payment.status === 'Paid'" [class.badge--pending]="payment.status === 'Pending'" [class.badge--expired]="payment.status === 'Overdue'">{{ payment.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

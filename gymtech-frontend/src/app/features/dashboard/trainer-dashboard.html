@@ -82,21 +82,21 @@
                 <div class="stat-icon">👥</div>
                 <div class="stat-info">
                   <div class="stat-label">Assigned Members</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ stats.assignedMembers }}</div>
                 </div>
               </div>
               <div class="stat-card">
                 <div class="stat-icon">✓</div>
                 <div class="stat-info">
                   <div class="stat-label">Sessions Today</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ stats.sessionsToday }}</div>
                 </div>
               </div>
               <div class="stat-card">
                 <div class="stat-icon">📅</div>
                 <div class="stat-info">
                   <div class="stat-label">Upcoming Sessions</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ stats.upcomingSessions }}</div>
                 </div>
               </div>
             </div>
@@ -105,25 +105,59 @@
 
         <!-- View Assigned Members -->
         <div *ngIf="activeFeature === 'members'" class="feature-content">
-          <div class="empty-state">
-            <p>👥 View Assigned Members</p>
-            <p class="text-muted">Your assigned members list will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header"><h3>Assigned Members</h3></div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Email</th><th>Goal</th><th>Sessions This Month</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let member of assignedMembers">
+                  <td>{{ member.id }}</td><td>{{ member.name }}</td><td>{{ member.email }}</td>
+                  <td>{{ member.goal }}</td><td>{{ member.sessionsThisMonth }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Record Attendance -->
         <div *ngIf="activeFeature === 'attendance'" class="feature-content">
-          <div class="empty-state">
-            <p>✓ Record Attendance</p>
-            <p class="text-muted">Attendance recording interface will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Session Attendance</h3>
+              <button class="btn btn-primary">+ Log Session</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Member</th><th>Date</th><th>Time</th><th>Duration</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let session of sessions">
+                  <td>{{ session.id }}</td><td>{{ session.member }}</td><td>{{ session.date }}</td>
+                  <td>{{ session.time }}</td><td>{{ session.duration }}</td>
+                  <td><span class="badge" [class.badge--active]="session.status === 'Completed'" [class.badge--pending]="session.status === 'Scheduled'" [class.badge--role]="session.status === 'In Progress'">{{ session.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- View Schedule -->
         <div *ngIf="activeFeature === 'schedule'" class="feature-content">
-          <div class="empty-state">
-            <p>📅 View Schedule</p>
-            <p class="text-muted">Your training schedule will be displayed here</p>
+          <div class="data-table-wrapper">
+            <div class="table-header"><h3>Weekly Schedule</h3></div>
+            <table class="data-table">
+              <thead>
+                <tr><th>Day</th><th>Time</th><th>Member</th><th>Type</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let slot of schedule">
+                  <td><strong>{{ slot.day }}</strong></td><td>{{ slot.time }}</td>
+                  <td>{{ slot.member }}</td><td>{{ slot.type }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

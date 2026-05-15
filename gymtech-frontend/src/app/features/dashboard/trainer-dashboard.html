@@ -1,0 +1,132 @@
+<!-- DASHBOARD CONTAINER -->
+<div class="dashboard-container">
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="dashboard-navbar">
+    <div class="navbar-brand">
+      <h1 class="navbar-title">GymTech</h1>
+      <p class="navbar-subtitle">Trainer Dashboard</p>
+    </div>
+    <div class="navbar-actions">
+      <span class="user-greeting">Welcome, {{ trainerName }}</span>
+      <button class="btn btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="dashboard-content">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <!-- Dashboard Home -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'home'"
+          (click)="navigateTo('home')"
+        >
+          <span class="sidebar-icon">🏠</span>
+          <span class="sidebar-label">Dashboard Home</span>
+        </button>
+
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-title">Training</div>
+
+        <!-- View Assigned Members -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'members'"
+          (click)="navigateTo('members')"
+        >
+          <span class="sidebar-icon">👥</span>
+          <span class="sidebar-label">Assigned Members</span>
+        </button>
+
+        <!-- Record Attendance -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'attendance'"
+          (click)="navigateTo('attendance')"
+        >
+          <span class="sidebar-icon">✓</span>
+          <span class="sidebar-label">Record Attendance</span>
+        </button>
+
+        <!-- View Schedule -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'schedule'"
+          (click)="navigateTo('schedule')"
+        >
+          <span class="sidebar-icon">📅</span>
+          <span class="sidebar-label">View Schedule</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+      <div class="page-header">
+        <h2 class="page-title">{{ getPageTitle() }}</h2>
+      </div>
+
+      <div class="page-content">
+        <!-- Home Page -->
+        <div *ngIf="activeFeature === 'home'" class="feature-content">
+          <div class="welcome-card">
+            <h3>Welcome to GymTech Trainer Dashboard</h3>
+            <p>
+              Manage your training sessions and track member progress. Use the sidebar
+              to navigate through your training activities.
+            </p>
+            <div class="quick-stats">
+              <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                  <div class="stat-label">Assigned Members</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">✓</div>
+                <div class="stat-info">
+                  <div class="stat-label">Sessions Today</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-info">
+                  <div class="stat-label">Upcoming Sessions</div>
+                  <div class="stat-value">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View Assigned Members -->
+        <div *ngIf="activeFeature === 'members'" class="feature-content">
+          <div class="empty-state">
+            <p>👥 View Assigned Members</p>
+            <p class="text-muted">Your assigned members list will be displayed here</p>
+          </div>
+        </div>
+
+        <!-- Record Attendance -->
+        <div *ngIf="activeFeature === 'attendance'" class="feature-content">
+          <div class="empty-state">
+            <p>✓ Record Attendance</p>
+            <p class="text-muted">Attendance recording interface will be displayed here</p>
+          </div>
+        </div>
+
+        <!-- View Schedule -->
+        <div *ngIf="activeFeature === 'schedule'" class="feature-content">
+          <div class="empty-state">
+            <p>📅 View Schedule</p>
+            <p class="text-muted">Your training schedule will be displayed here</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

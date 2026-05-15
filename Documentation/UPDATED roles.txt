@@ -1,0 +1,30 @@
+Role = Admin
+Role = Receptionist
+Role = Trainer
+Role = Member
+
+Admin:
+- Manage members
+- Manage trainers
+- Manage subscriptions
+- Manage payments
+- View attendance
+- Generate reports
+- Manage users/roles
+
+Receptionist:
+- Add member
+- Update member
+- View subscriptions
+- Register payment
+- Check attendance
+
+Trainer:
+- View assigned members
+- View schedule
+- Record attendance/session
+
+Member:
+- View personal profile
+- View subscription status
+- View payment history

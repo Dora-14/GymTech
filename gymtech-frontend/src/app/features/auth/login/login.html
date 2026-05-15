@@ -1,0 +1,173 @@
+<div class="login-container">
+  <!-- LEFT PANEL: Welcome Section -->
+  <!-- This section displays a welcome message to users. 
+       It's perfect for displaying branding, app description, or promotional content later -->
+  <div class="login-panel login-panel--welcome">
+    <div class="welcome-content">
+      <h1 class="welcome-title">Welcome to GymTech</h1>
+      <p class="welcome-subtitle">Gym Management System</p>
+      <p class="welcome-message">
+        Manage your gym efficiently with our comprehensive admin dashboard.
+        Track members, subscriptions, trainers, and more in one place.
+      </p>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: Authentication Form Section -->
+  <!-- Shows either login or signup form based on currentPage state -->
+  <div class="login-panel login-panel--form">
+    <!-- LOGIN FORM -->
+    <div class="form-wrapper" *ngIf="currentPage === 'login'">
+      <h2 class="form-title">Login</h2>
+      
+      <!-- Login Form -->
+      <form class="login-form" (ngSubmit)="onLogin()">
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="username" class="form-label">Username or Email</label>
+          <input 
+            type="text" 
+            id="username" 
+            class="form-input"
+            placeholder="Enter your username or email"
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            class="form-input"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <!-- Login Button -->
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          (click)="onLogin()"
+        >
+          Log In
+        </button>
+      </form>
+
+      <!-- Sign-up Link Section -->
+      <!-- This will be expanded later for account registration flow -->
+      <div class="auth-footer">
+        <p class="auth-text">
+          Don't have an account yet?
+          <button 
+            type="button"
+            class="auth-link"
+            (click)="goToSignup()"
+          >
+            Sign up here
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <!-- SIGNUP FORM -->
+    <div class="form-wrapper" *ngIf="currentPage === 'signup'">
+      <h2 class="form-title">Create Account</h2>
+      
+      <!-- Sign-up Form -->
+      <form class="login-form" (ngSubmit)="onSignup()">
+
+        <!-- First Name Field -->
+        <div class="form-group">
+          <label for="signup-firstname" class="form-label">First Name</label>
+          <input 
+            type="text" 
+            id="signup-firstname" 
+            class="form-input"
+            placeholder="Enter your first name"
+            required
+          />
+        </div>
+
+        <!-- Last Name Field -->
+        <div class="form-group">
+          <label for="signup-lastname" class="form-label">Last Name</label>
+          <input 
+            type="text" 
+            id="signup-lastname" 
+            class="form-input"
+            placeholder="Enter your last name"
+            required
+          />
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="signup-email" class="form-label">Email</label>
+          <input 
+            type="email" 
+            id="signup-email" 
+            class="form-input"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="form-group">
+          <label for="signup-phone" class="form-label">Phone Number</label>
+          <input 
+            type="tel" 
+            id="signup-phone" 
+            class="form-input"
+            placeholder="Enter your phone number"
+            required
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="signup-password" class="form-label">Password</label>
+          <input 
+            type="password" 
+            id="signup-password" 
+            class="form-input"
+            placeholder="Enter a strong password"
+            required
+          />
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <label for="signup-confirmpassword" class="form-label">Confirm Password</label>
+          <input 
+            type="password" 
+            id="signup-confirmpassword" 
+            class="form-input"
+            placeholder="Confirm your password"
+            required
+          />
+        </div>
+
+        <!-- Sign-up Button -->
+        <button type="submit" class="btn btn-primary">
+          Create Account
+        </button>
+      </form>
+
+      <!-- Login Link Section -->
+      <div class="auth-footer">
+        <p class="auth-text">
+          Already have an account?
+          <button 
+            type="button"
+            class="auth-link"
+            (click)="goToLogin()"
+          >
+            Login Here
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,5 +31,9 @@ describe('App', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, gymtech-frontend');
   });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 
 });

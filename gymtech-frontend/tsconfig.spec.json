@@ -3,7 +3,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+<<<<<<< HEAD
     "outDir": "./dist/out-tsc", 
+=======
+    "outDir": "./dist/out-tsc",
+>>>>>>> origin/main
     "rootDir": "./src/app",
     "types": [
       "vitest/globals"

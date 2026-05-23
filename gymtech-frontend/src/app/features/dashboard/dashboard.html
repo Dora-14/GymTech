@@ -1,4 +1,7 @@
 <!-- DASHBOARD CONTAINER -->
+<button class="theme-toggle" (click)="toggleTheme()">
+  {{ isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+</button>
 <div class="dashboard-container">
   <!-- TOP NAVIGATION BAR -->
   <nav class="dashboard-navbar">
@@ -135,21 +138,21 @@
                 <div class="stat-icon">👥</div>
                 <div class="stat-info">
                   <div class="stat-label">Total Members</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ stats.totalMembers }}</div>
                 </div>
               </div>
               <div class="stat-card">
                 <div class="stat-icon">💪</div>
                 <div class="stat-info">
                   <div class="stat-label">Active Trainers</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ stats.activeTrainers }}</div>
                 </div>
               </div>
               <div class="stat-card">
                 <div class="stat-icon">💳</div>
                 <div class="stat-info">
                   <div class="stat-label">Monthly Revenue</div>
-                  <div class="stat-value">$0</div>
+                  <div class="stat-value">${{ stats.monthlyRevenue }}</div>
                 </div>
               </div>
             </div>
@@ -158,57 +161,186 @@
 
         <!-- Generate Reports -->
         <div *ngIf="activeFeature === 'reports'" class="feature-content">
-          <div class="empty-state">
-            <p>📊 Generate Reports - Coming Soon</p>
-            <p class="text-muted">Create comprehensive reports about your gym operations</p>
+          <div class="data-table-wrapper">
+            <div class="table-header"><h3>Available Reports</h3></div>
+            <div class="report-cards">
+              <div class="report-card">
+                <div class="report-icon">📊</div>
+                <div class="report-title">Monthly Revenue</div>
+                <p class="report-desc">May 2026 total: <strong>$12,540</strong></p>
+                <button class="btn btn-primary">Generate PDF</button>
+              </div>
+              <div class="report-card">
+                <div class="report-icon">👥</div>
+                <div class="report-title">Member Report</div>
+                <p class="report-desc">Active: 128 &middot; Expired: 14</p>
+                <button class="btn btn-primary">Generate PDF</button>
+              </div>
+              <div class="report-card">
+                <div class="report-icon">✓</div>
+                <div class="report-title">Attendance Report</div>
+                <p class="report-desc">This month: 1,204 check-ins</p>
+                <button class="btn btn-primary">Generate PDF</button>
+              </div>
+              <div class="report-card">
+                <div class="report-icon">💳</div>
+                <div class="report-title">Payment Report</div>
+                <p class="report-desc">5 pending &middot; 2 overdue</p>
+                <button class="btn btn-primary">Generate PDF</button>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Search & Filter -->
         <div *ngIf="activeFeature === 'search'" class="feature-content">
-          <div class="empty-state">
-            <p>🔍 Search & Filter - Coming Soon</p>
-            <p class="text-muted">Search and filter members, trainers, and more</p>
+          <div class="data-table-wrapper">
+            <div class="table-header"><h3>Search Members</h3></div>
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search by name, email or phone..." />
+              <button class="btn btn-primary">Search</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Subscription</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let member of members">
+                  <td>{{ member.id }}</td><td>{{ member.name }}</td><td>{{ member.email }}</td>
+                  <td>{{ member.phone }}</td><td>{{ member.subscription }}</td>
+                  <td><span class="badge" [class.badge--active]="member.status === 'Active'" [class.badge--expired]="member.status === 'Expired'">{{ member.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Record Attendance -->
         <div *ngIf="activeFeature === 'attendance'" class="feature-content">
-          <div class="empty-state">
-            <p>✓ Record Attendance - Coming Soon</p>
-            <p class="text-muted">Track and record member attendance</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Attendance Records</h3>
+              <button class="btn btn-primary">+ Record Check-In</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Member</th><th>Date</th><th>Check-In</th><th>Check-Out</th><th>Trainer</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let record of attendance">
+                  <td>{{ record.id }}</td><td>{{ record.member }}</td><td>{{ record.date }}</td>
+                  <td>{{ record.checkIn }}</td><td>{{ record.checkOut }}</td><td>{{ record.trainer }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Manage Members -->
         <div *ngIf="activeFeature === 'members'" class="feature-content">
-          <div class="empty-state">
-            <p>👥 Manage Members - Coming Soon</p>
-            <p class="text-muted">Add, edit, and manage gym members</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Members List</h3>
+              <button class="btn btn-primary">+ Add Member</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Subscription</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let member of members">
+                  <td>{{ member.id }}</td><td>{{ member.name }}</td><td>{{ member.email }}</td>
+                  <td>{{ member.phone }}</td><td>{{ member.subscription }}</td>
+                  <td><span class="badge" [class.badge--active]="member.status === 'Active'" [class.badge--expired]="member.status === 'Expired'">{{ member.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Manage Trainers -->
         <div *ngIf="activeFeature === 'trainers'" class="feature-content">
-          <div class="empty-state">
-            <p>💪 Manage Trainers - Coming Soon</p>
-            <p class="text-muted">Add, edit, and manage trainers</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Trainers List</h3>
+              <button class="btn btn-primary">+ Add Trainer</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Email</th><th>Specialization</th><th>Assigned Members</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let trainer of trainers">
+                  <td>{{ trainer.id }}</td><td>{{ trainer.name }}</td><td>{{ trainer.email }}</td>
+                  <td>{{ trainer.specialization }}</td><td>{{ trainer.assignedMembers }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Manage Subscriptions -->
         <div *ngIf="activeFeature === 'subscriptions'" class="feature-content">
-          <div class="empty-state">
-            <p>📋 Manage Subscriptions - Coming Soon</p>
-            <p class="text-muted">Create and manage subscription plans</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Subscription Plans</h3>
+              <button class="btn btn-primary">+ Add Plan</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Plan Name</th><th>Duration</th><th>Price</th><th>Features</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of subscriptions">
+                  <td>{{ sub.id }}</td><td>{{ sub.name }}</td><td>{{ sub.duration }}</td>
+                  <td>${{ sub.price }}</td><td>{{ sub.features }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <!-- Manage Payments -->
         <div *ngIf="activeFeature === 'payments'" class="feature-content">
-          <div class="empty-state">
-            <p>💳 Manage Payments - Coming Soon</p>
-            <p class="text-muted">Record and manage member payments</p>
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>Payment Records</h3>
+              <button class="btn btn-primary">+ Record Payment</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Member</th><th>Plan</th><th>Amount</th><th>Date</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let payment of payments">
+                  <td>{{ payment.id }}</td><td>{{ payment.member }}</td><td>{{ payment.plan }}</td>
+                  <td>${{ payment.amount }}</td><td>{{ payment.date }}</td>
+                  <td><span class="badge" [class.badge--active]="payment.status === 'Paid'" [class.badge--pending]="payment.status === 'Pending'" [class.badge--expired]="payment.status === 'Overdue'">{{ payment.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Manage Users & Roles -->
+        <div *ngIf="activeFeature === 'users-roles'" class="feature-content">
+          <div class="data-table-wrapper">
+            <div class="table-header">
+              <h3>System Users</h3>
+              <button class="btn btn-primary">+ Add User</button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Email</th><th>Role</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{ user.id }}</td><td>{{ user.name }}</td><td>{{ user.email }}</td>
+                  <td><span class="badge badge--role">{{ user.role }}</span></td>
+                  <td><span class="badge" [class.badge--active]="user.status === 'Active'" [class.badge--expired]="user.status === 'Inactive'">{{ user.status }}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

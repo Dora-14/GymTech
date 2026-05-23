@@ -170,3 +170,32 @@ html, body {
 }
 
 .feature-item:last-child { border-bottom: none; }
+
+/* ── THEME TOGGLE ───────────────────────── */
+
+body{
+  background-color: #1a1a1a;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+body.light-theme {
+  background-color: yellow !important;
+  color: red !important;
+}
+
+/* Theme button */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #89CFF0;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}

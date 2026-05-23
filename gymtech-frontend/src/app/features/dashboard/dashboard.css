@@ -235,7 +235,7 @@
 .stat-value {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: #E85B8A;
 }
 
 .empty-state {
@@ -338,4 +338,80 @@
   .quick-stats {
     grid-template-columns: 1fr;
   }
+}
+
+:host-context(body.light-theme) .dashboard-container,
+:host-context(body.light-theme) .dashboard-main,
+:host-context(body.light-theme) .page-content {
+  background: #f5f7fb !important;
+  color: black !important;
+}
+
+:host-context(body.light-theme) .dashboard-navbar,
+:host-context(body.light-theme) .dashboard-sidebar,
+:host-context(body.light-theme) .page-header {
+  background: white !important;
+  color: black !important;
+}
+
+:host-context(body.light-theme) .welcome-card,
+:host-context(body.light-theme) .stat-card,
+:host-context(body.light-theme) .empty-state {
+  background: white !important;
+  color: black !important;
+}
+
+:host-context(body.light-theme) .sidebar-item,
+:host-context(body.light-theme) .user-greeting,
+:host-context(body.light-theme) .welcome-card p,
+:host-context(body.light-theme) .stat-label,
+:host-context(body.light-theme) .empty-state p {
+  color: #444 !important;
+}
+
+:host-context(body.light-theme) .page-title,
+:host-context(body.light-theme) h3,
+:host-context(body.light-theme) .stat-value {
+  color: #E85B8A !important;
+}
+
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #89CFF0;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+:host-context(body.light-theme) .data-table-wrapper {
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+:host-context(body.light-theme) .data-table th {
+  background: #f3f4f6 !important;
+  color: #444 !important;
+}
+
+:host-context(body.light-theme) .data-table td {
+  color: #1a1a1a !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+:host-context(body.light-theme) .data-table tbody tr:hover {
+  background: #fce7f0 !important;
+}
+
+:host-context(body.light-theme) .search-input {
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+  border: 1px solid #E85B8A !important;
 }

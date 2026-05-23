@@ -315,3 +315,44 @@
     font-size: 1.5rem;
   }
 }
+
+/* LIGHT MODE */
+
+body.light-theme .login-container {
+  background-image: none !important;
+  background-color: #f5f7fb !important;
+}
+
+body.light-theme .login-panel--welcome {
+  background-color: #eaf4ff !important;
+}
+
+body.light-theme .login-panel--form {
+  background: #ffffff !important;
+}
+
+body.light-theme .welcome-content,
+body.light-theme .welcome-title,
+body.light-theme .welcome-subtitle,
+body.light-theme .welcome-message,
+body.light-theme .form-title,
+body.light-theme .form-label,
+body.light-theme .auth-text,
+body.light-theme .auth-link {
+  color: #1a1a1a !important;
+}
+
+body.light-theme .form-input {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #89CFF0 !important;
+}
+
+body.light-theme .form-input::placeholder {
+  color: #777 !important;
+}
+
+body.light-theme .btn-primary {
+  background-color: #89CFF0 !important;
+  color: #000000 !important;
+}

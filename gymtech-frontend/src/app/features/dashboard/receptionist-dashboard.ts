@@ -27,6 +27,13 @@ import { AuthService } from '../../core/services/auth.service';
 export class ReceptionistDashboard implements OnInit {
   activeFeature: string = 'home';
   receptionistName: string = 'Receptionist';
+  isDarkMode = localStorage.getItem('theme') !== 'light';
+
+ toggleTheme() {
+  this.isDarkMode = !this.isDarkMode;
+  document.body.classList.toggle('light-theme', !this.isDarkMode);
+  localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+}
 
   stats = { totalMembers: 142, todayAttendance: 37, pendingPayments: 5 };
 

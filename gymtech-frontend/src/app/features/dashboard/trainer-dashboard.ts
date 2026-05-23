@@ -25,6 +25,13 @@ import { AuthService } from '../../core/services/auth.service';
 export class TrainerDashboard implements OnInit {
   activeFeature: string = 'home';
   trainerName: string = 'Trainer';
+  isDarkMode = localStorage.getItem('theme') !== 'light';
+
+ toggleTheme() {
+  this.isDarkMode = !this.isDarkMode;
+  document.body.classList.toggle('light-theme', !this.isDarkMode);
+  localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+}
 
   stats = { assignedMembers: 12, sessionsToday: 4, upcomingSessions: 7 };
 

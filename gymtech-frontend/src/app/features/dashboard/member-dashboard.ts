@@ -25,6 +25,13 @@ import { AuthService } from '../../core/services/auth.service';
 export class MemberDashboard implements OnInit {
   activeFeature: string = 'home';
   memberName: string = 'Member';
+  isDarkMode = localStorage.getItem('theme') !== 'light';
+
+toggleTheme() {
+  this.isDarkMode = !this.isDarkMode;
+  document.body.classList.toggle('light-theme', !this.isDarkMode);
+  localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+}
 
   profile = {
     firstName: 'Alice',

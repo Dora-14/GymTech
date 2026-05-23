@@ -125,6 +125,7 @@
 
 .sidebar-icon {
   font-size: 1.2rem;
+  color: #89CFF0; 
 }
 
 .sidebar-label {
@@ -220,6 +221,7 @@
 
 .stat-icon {
   font-size: 2rem;
+  color: #89CFF0 ;
 }
 
 .stat-info {
@@ -339,4 +341,62 @@
   .quick-stats {
     grid-template-columns: 1fr;
   }
+}
+
+:host-context(body.light-theme) .dashboard-container,
+:host-context(body.light-theme) .dashboard-main,
+:host-context(body.light-theme) .page-content {
+  background: #f5f7fb !important;
+  color: black !important;
+}
+
+:host-context(body.light-theme) .dashboard-navbar,
+:host-context(body.light-theme) .dashboard-sidebar,
+:host-context(body.light-theme) .page-header {
+  background: white !important;
+  color: black !important;
+}
+
+:host-context(body.light-theme) .welcome-card,
+:host-context(body.light-theme) .stat-card,
+:host-context(body.light-theme) .empty-state {
+  background: white !important;
+  color: black !important;
+}
+
+:host-context(body.light-theme) .sidebar-item,
+:host-context(body.light-theme) .user-greeting,
+:host-context(body.light-theme) .welcome-card p,
+:host-context(body.light-theme) .stat-label,
+:host-context(body.light-theme) .empty-state p {
+  color: #444 !important;
+}
+
+:host-context(body.light-theme) .page-title,
+:host-context(body.light-theme) h3,
+:host-context(body.light-theme) .stat-value {
+  color: #E85B8A !important;
+}
+
+:host-context(body.light-theme) .data-table-wrapper,
+:host-context(body.light-theme) .welcome-card,
+:host-context(body.light-theme) .stat-card {
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+:host-context(body.light-theme) .data-table th {
+  background: #f3f4f6 !important;
+  color: #444 !important;
+}
+
+:host-context(body.light-theme) .data-table td,
+:host-context(body.light-theme) .welcome-card p,
+:host-context(body.light-theme) .stat-label {
+  color: #1a1a1a !important;
+}
+
+:host-context(body.light-theme) .stat-value,
+:host-context(body.light-theme) h3 {
+  color: #E85B8A !important;
 }

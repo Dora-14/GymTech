@@ -29,8 +29,15 @@ import { AuthService } from '../../core/services/auth.service';
 export class Dashboard implements OnInit {
   activeFeature: string = 'home';
   adminName: string = 'Admin';
+  isDarkMode = localStorage.getItem('theme') !== 'light';
 
-  stats = { totalMembers: 142, activeTrainers: 8, monthlyRevenue: 12540 };
+ toggleTheme() {
+  this.isDarkMode = !this.isDarkMode;
+
+  document.body.classList.toggle('light-theme', !this.isDarkMode);
+  localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+}
+  stats = { totalMembers: 142, activeTrainers: 8, monthlyRevenue: 12540.00 };
 
   members = [
     { id: 1, name: 'Alice Johnson',  email: 'alice@email.com',  phone: '0721 000 001', subscription: 'Premium',  status: 'Active'  },

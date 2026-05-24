@@ -407,19 +407,26 @@
   "components": {
     "schemas": {
       "Member": {
+        "required": [
+          "email",
+          "fullName",
+          "phone"
+        ],
         "type": "object",
         "properties": {
           "fullName": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "email": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "phone": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 15,
+            "minLength": 10,
+            "type": "string"
           },
           "dateOfBirth": {
             "type": "string",
@@ -440,6 +447,8 @@
             "format": "int32"
           },
           "amount": {
+            "maximum": 10000,
+            "minimum": 1,
             "type": "number",
             "format": "double"
           },
@@ -454,9 +463,6 @@
           "memberId": {
             "type": "integer",
             "format": "int32"
-          },
-          "member": {
-            "$ref": "#/components/schemas/Member"
           }
         },
         "additionalProperties": false

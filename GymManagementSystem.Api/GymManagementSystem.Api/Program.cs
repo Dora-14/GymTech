@@ -1,7 +1,6 @@
 using GymManagementSystem.Api.Data;
 using GymManagementSystem.Api.Services;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -12,6 +11,14 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAngularApp",
+//        policy => policy.WithOrigins("http://localhost:4200") // Angular's default port
+//                        .AllowAnyMethod()
+//                        .AllowAnyHeader());
+//});
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -31,6 +38,10 @@ builder.Services.AddScoped<AuthService>();
 var app = builder.Build();
 
 app.UseCors("AllowAll");
+
+//app.UseCors("AllowAngularApp");
+
+
 
 if (app.Environment.IsDevelopment())
 {

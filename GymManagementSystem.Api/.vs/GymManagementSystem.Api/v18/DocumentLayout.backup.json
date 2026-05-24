@@ -1,0 +1,80 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Egyetem\\3ev\\2felev\\II2\\Project\\GymManagementSystem.Api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\egyetem\\3ev\\2felev\\ii2\\project\\gymmanagementsystem.api\\gymmanagementsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|c:\\egyetem\\3ev\\2felev\\ii2\\project\\gymmanagementsystem.api\\gymmanagementsystem.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D284517A-AA5C-4CF3-AEB8-28B043379958}|GymManagementSystem.Api\\GymManagementSystem.Api.csproj|solutionrelative:gymmanagementsystem.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B749EFD4-677D-4C08-8851-1A30F817882F}|GymManagementSystem.Tests\\GymManagementSystem.Tests.csproj|c:\\egyetem\\3ev\\2felev\\ii2\\project\\gymmanagementsystem.api\\gymmanagementsystem.tests\\gymmanagementsystem.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B749EFD4-677D-4C08-8851-1A30F817882F}|GymManagementSystem.Tests\\GymManagementSystem.Tests.csproj|solutionrelative:gymmanagementsystem.tests\\gymmanagementsystem.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 252,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Egyetem\\3ev\\2felev\\II2\\Project\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Models\\Payment.cs",
+              "ToolTip": "C:\\Egyetem\\3ev\\2felev\\II2\\Project\\GymManagementSystem.Api\\GymManagementSystem.Api\\Models\\Payment.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Models\\Payment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T07:17:27.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Egyetem\\3ev\\2felev\\II2\\Project\\GymManagementSystem.Api\\GymManagementSystem.Api\\Program.cs",
+              "RelativeDocumentMoniker": "GymManagementSystem.Api\\Program.cs",
+              "ToolTip": "C:\\Egyetem\\3ev\\2felev\\II2\\Project\\GymManagementSystem.Api\\GymManagementSystem.Api\\Program.cs",
+              "RelativeToolTip": "GymManagementSystem.Api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T14:15:30.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GymManagementSystem.Tests.csproj",
+              "DocumentMoniker": "C:\\Egyetem\\3ev\\2felev\\II2\\Project\\GymManagementSystem.Api\\GymManagementSystem.Tests\\GymManagementSystem.Tests.csproj",
+              "RelativeDocumentMoniker": "GymManagementSystem.Tests\\GymManagementSystem.Tests.csproj",
+              "ToolTip": "C:\\Egyetem\\3ev\\2felev\\II2\\Project\\GymManagementSystem.Api\\GymManagementSystem.Tests\\GymManagementSystem.Tests.csproj",
+              "RelativeToolTip": "GymManagementSystem.Tests\\GymManagementSystem.Tests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-23T08:44:53.954Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 58,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

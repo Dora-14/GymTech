@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 /**
  * Trainer Dashboard Component
@@ -21,44 +22,67 @@ import { RouterModule, Router } from '@angular/router';
   templateUrl: './trainer-dashboard.html',
   styleUrl: './trainer-dashboard.css',
 })
-export class TrainerDashboard {
-  /**
-   * Track which feature/page is currently active
-   */
+export class TrainerDashboard implements OnInit {
   activeFeature: string = 'home';
-
-  /**
-   * Store the trainer username for display in top bar
-   */
   trainerName: string = 'Trainer';
+  isDarkMode = localStorage.getItem('theme') !== 'light';
 
-  constructor(private router: Router) {}
+ toggleTheme() {
+  this.isDarkMode = !this.isDarkMode;
+  document.body.classList.toggle('light-theme', !this.isDarkMode);
+  localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+}
 
-  /**
-   * Navigate to a specific feature/page
-   */
-  navigateTo(feature: string): void {
-    this.activeFeature = feature;
-    console.log(`Navigating to: ${feature}`);
+  stats = { assignedMembers: 12, sessionsToday: 4, upcomingSessions: 7 };
+
+  assignedMembers = [
+    { id: 1, name: 'Alice Johnson', email: 'alice@email.com', goal: 'Weight Loss',  sessionsThisMonth:  8 },
+    { id: 2, name: 'Bob Smith',     email: 'bob@email.com',   goal: 'Muscle Gain',  sessionsThisMonth: 10 },
+    { id: 3, name: 'David Brown',   email: 'david@email.com', goal: 'Endurance',    sessionsThisMonth:  6 },
+    { id: 4, name: 'Eva Green',     email: 'eva@email.com',   goal: 'Flexibility',  sessionsThisMonth:  5 },
+    { id: 5, name: 'Carlos Rivera', email: 'carlos@email.com',goal: 'Strength',     sessionsThisMonth:  9 },
+  ];
+
+  sessions = [
+    { id: 1, member: 'Alice Johnson', date: '2026-05-12', time: '08:30', duration: '60 min', status: 'Completed'   },
+    { id: 2, member: 'Bob Smith',     date: '2026-05-12', time: '10:00', duration: '45 min', status: 'Completed'   },
+    { id: 3, member: 'David Brown',   date: '2026-05-12', time: '13:00', duration: '60 min', status: 'In Progress' },
+    { id: 4, member: 'Eva Green',     date: '2026-05-12', time: '15:00', duration: '45 min', status: 'Scheduled'   },
+    { id: 5, member: 'Carlos Rivera', date: '2026-05-13', time: '09:00', duration: '60 min', status: 'Scheduled'   },
+  ];
+
+  schedule = [
+    { day: 'Monday',    time: '08:00 – 09:00', member: 'Alice Johnson', type: 'Strength Training' },
+    { day: 'Monday',    time: '10:00 – 10:45', member: 'Bob Smith',     type: 'HIIT'              },
+    { day: 'Tuesday',   time: '09:00 – 10:00', member: 'Carlos Rivera', type: 'Strength Training' },
+    { day: 'Wednesday', time: '08:30 – 09:30', member: 'Alice Johnson', type: 'Cardio'            },
+    { day: 'Wednesday', time: '14:00 – 15:00', member: 'David Brown',   type: 'Endurance'         },
+    { day: 'Thursday',  time: '10:00 – 10:45', member: 'Eva Green',     type: 'Flexibility'       },
+    { day: 'Friday',    time: '08:00 – 09:00', member: 'Bob Smith',     type: 'Strength Training' },
+  ];
+
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    const name = this.authService.getFirstName();
+    if (name) this.trainerName = name;
   }
 
-  /**
-   * Logout function - redirects to login page
-   */
+  navigateTo(feature: string): void {
+    this.activeFeature = feature;
+  }
+
   logout(): void {
-    console.log('Logging out...');
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
-  /**
-   * Get the page title based on active feature
-   */
   getPageTitle(): string {
     const titles: { [key: string]: string } = {
       home: 'Dashboard Home',
-      members: 'View Assigned Members',
-      attendance: 'Record Attendance',
-      schedule: 'View Schedule',
+      members: 'Assigned Members',
+      attendance: 'Session Attendance',
+      schedule: 'Weekly Schedule',
     };
     return titles[this.activeFeature] || 'Dashboard';
   }

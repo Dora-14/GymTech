@@ -25,6 +25,7 @@ interface PersonEntry {
 })
 export class ReceptionistDashboard implements OnInit {
   activeFeature = 'home';
+  isDarkMode = false;
   receptionistName = '';
 
   memberSearchQuery = '';
@@ -91,6 +92,10 @@ export class ReceptionistDashboard implements OnInit {
     this.authService.logout();
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
   }
 
   getPageTitle(): string {

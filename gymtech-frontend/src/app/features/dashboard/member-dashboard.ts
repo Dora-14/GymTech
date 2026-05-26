@@ -22,6 +22,7 @@ import { Trainer } from '../../models/trainer.model';
 })
 export class MemberDashboard implements OnInit {
   activeFeature = 'home';
+  isDarkMode = false;
   memberName = '';
   memberId = 0;
 
@@ -76,6 +77,10 @@ export class MemberDashboard implements OnInit {
     this.authService.logout();
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
   }
 
   getPageTitle(): string {

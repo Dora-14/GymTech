@@ -26,6 +26,7 @@ import { UserAccount, CreateUserRequest } from '../../models/user.model';
 })
 export class Dashboard implements OnInit {
   activeFeature = 'home';
+  isDarkMode = false;
   adminName = '';
 
   stats: Stats = { totalMembers: 0, totalTrainers: 0, activeSubscriptions: 0, totalRevenue: 0 };
@@ -97,6 +98,10 @@ export class Dashboard implements OnInit {
   ngOnInit(): void {
     this.adminName = this.authService.getUsername();
     this.loadStats();
+  }
+
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
   }
 
   navigateTo(feature: string): void {

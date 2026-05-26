@@ -17,6 +17,7 @@ import { Attendance } from '../../models/attendance.model';
 })
 export class TrainerDashboard implements OnInit {
   activeFeature = 'home';
+  isDarkMode = false;
   trainerName = '';
   trainerId = 0;
 
@@ -30,6 +31,7 @@ export class TrainerDashboard implements OnInit {
 
   attendanceMemberId = '';
   attendanceList: Attendance[] = [];
+  schedule: { day: string; time: string; member: string; type: string }[] = [];
 
   constructor(
     private router: Router,
@@ -62,6 +64,10 @@ export class TrainerDashboard implements OnInit {
     this.authService.logout();
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
   }
 
   getPageTitle(): string {

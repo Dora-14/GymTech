@@ -35,5 +35,11 @@ namespace GymManagementSystem.Api.Controllers
             var payments = await _paymentService.GetMemberPaymentsAsync(memberId);
             return Ok(payments);
         }
+
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _paymentService.GetAllAsync());
+        }
     }
 }

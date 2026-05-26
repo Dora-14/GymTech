@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
-import { LoginRequest, RegisterRequest } from '../../../core/models/auth.models';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,115 +13,100 @@ import { LoginRequest, RegisterRequest } from '../../../core/models/auth.models'
 export class Login {
   currentPage: 'login' | 'signup' = 'login';
 
-  // ── Login form model ──────────────────────────────────────────────────────
-  loginEmail: string = '';
-  loginPassword: string = '';
+  // Login form fields
+  username: string = '';
+  password: string = '';
+  loginError: string = '';
+  isLoginLoading: boolean = false;
 
-  // ── Register form model ───────────────────────────────────────────────────
-  signupFirstName: string = '';
-  signupLastName: string = '';
-  signupEmail: string = '';
-  signupPhone: string = '';
+  // Signup form fields
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
+  phone: string = '';
   signupPassword: string = '';
-  signupConfirmPassword: string = '';
+  confirmPassword: string = '';
+  signupError: string = '';
+  signupSuccess: string = '';
+  isSignupLoading: boolean = false;
 
-  // ── UI state ──────────────────────────────────────────────────────────────
-  isLoading: boolean = false;
-  errorMessage: string = '';
-  successMessage: string = '';
-
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private cdr: ChangeDetectorRef) {}
 
   goToSignup(): void {
     this.currentPage = 'signup';
-    this.clearMessages();
+    this.loginError = '';
   }
 
   goToLogin(): void {
     this.currentPage = 'login';
-    this.clearMessages();
+    this.signupError = '';
+    this.signupSuccess = '';
   }
 
   onLogin(): void {
-    this.clearMessages();
+    this.loginError = '';
 
-    if (!this.loginEmail || !this.loginPassword) {
-      this.errorMessage = 'Please enter your email and password.';
+    if (!this.username.trim() || !this.password.trim()) {
+      this.loginError = 'Please enter your username and password.';
       return;
     }
 
-    this.isLoading = true;
-    const credentials: LoginRequest = {
-      email: this.loginEmail,
-      password: this.loginPassword
-    };
+    this.isLoginLoading = true;
 
-    this.authService.login(credentials).subscribe({
+    this.authService.login({ username: this.username, password: this.password }).subscribe({
       next: (response) => {
-        this.isLoading = false;
-        const route = this.authService.getDashboardRouteForRole(response.role);
-        this.router.navigate([route]);
+        this.isLoginLoading = false;
+        const role = response.role;
+        if (role === 'Admin') this.router.navigate(['/dashboard']);
+        else if (role === 'Receptionist') this.router.navigate(['/receptionist-dashboard']);
+        else if (role === 'Trainer') this.router.navigate(['/trainer-dashboard']);
+        else if (role === 'Member') this.router.navigate(['/member-dashboard']);
+        else this.router.navigate(['/dashboard']);
       },
       error: (err) => {
-        this.isLoading = false;
-        this.errorMessage = err?.error?.message ?? 'Invalid email or password. Please try again.';
+        this.isLoginLoading = false;
+        this.loginError = err?.error?.message ?? 'Invalid username or password.';
+        this.cdr.detectChanges();
       }
     });
   }
 
   onSignup(): void {
-    this.clearMessages();
+    this.signupError = '';
+    this.signupSuccess = '';
 
-    if (!this.signupFirstName || !this.signupLastName || !this.signupEmail ||
-        !this.signupPhone || !this.signupPassword || !this.signupConfirmPassword) {
-      this.errorMessage = 'Please fill in all fields.';
+    if (!this.firstName.trim() || !this.lastName.trim() || !this.email.trim() ||
+        !this.phone.trim() || !this.signupPassword.trim()) {
+      this.signupError = 'All fields are required.';
       return;
     }
 
-    if (this.signupPassword !== this.signupConfirmPassword) {
-      this.errorMessage = 'Passwords do not match.';
+    if (this.signupPassword !== this.confirmPassword) {
+      this.signupError = 'Passwords do not match.';
       return;
     }
 
-    if (this.signupPassword.length < 6) {
-      this.errorMessage = 'Password must be at least 6 characters.';
-      return;
-    }
+    this.isSignupLoading = true;
 
-    this.isLoading = true;
-    const userData: RegisterRequest = {
-      firstName: this.signupFirstName,
-      lastName: this.signupLastName,
-      email: this.signupEmail,
-      phoneNumber: this.signupPhone,
+    this.authService.register({
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      phone: this.phone,
       password: this.signupPassword
-    };
-
-    this.authService.register(userData).subscribe({
+    }).subscribe({
       next: () => {
-        this.isLoading = false;
-        this.successMessage = 'Account created successfully! Please log in.';
-        this.resetSignupForm();
+        this.isSignupLoading = false;
+        this.signupSuccess = 'Account created! You can now log in.';
+        this.cdr.detectChanges();
         setTimeout(() => this.goToLogin(), 1500);
       },
       error: (err) => {
-        this.isLoading = false;
-        this.errorMessage = err?.error?.message ?? 'Registration failed. Please try again.';
+        this.isSignupLoading = false;
+        this.signupError = err?.error?.message ?? 'Registration failed. Please try again.';
+        this.cdr.detectChanges();
       }
     });
   }
-
-  private clearMessages(): void {
-    this.errorMessage = '';
-    this.successMessage = '';
-  }
-
-  private resetSignupForm(): void {
-    this.signupFirstName = '';
-    this.signupLastName = '';
-    this.signupEmail = '';
-    this.signupPhone = '';
-    this.signupPassword = '';
-    this.signupConfirmPassword = '';
-  }
 }
+

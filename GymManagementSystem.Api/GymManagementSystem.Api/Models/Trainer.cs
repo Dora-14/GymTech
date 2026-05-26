@@ -4,7 +4,6 @@ namespace GymManagementSystem.Api.Models
 {
     public class Trainer
     {
-        [JsonIgnore]
         public int TrainerId { get; set; }
         public string FullName { get; set; } = string.Empty;
         public string Speciality { get; set; } = string.Empty;

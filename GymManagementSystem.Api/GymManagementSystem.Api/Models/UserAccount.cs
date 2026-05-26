@@ -12,5 +12,6 @@ namespace GymManagementSystem.Api.Models
         public string PasswordHash { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Role { get; set; } = "Admin";
+        public int? TrainerId { get; set; }
     }
 }

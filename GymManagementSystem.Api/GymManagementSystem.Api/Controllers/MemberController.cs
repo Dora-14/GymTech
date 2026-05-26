@@ -48,13 +48,16 @@ namespace GymManagementSystem.Api.Controllers
         public async Task<IActionResult> Update(int id, Member memberUpdate)
         {
             var updatedMember = await _memberService.UpdateAsync(id, memberUpdate);
-
-            if (updatedMember == null)
-            {
-                return NotFound($"Eroare: Nu am găsit niciun membru cu ID-ul {id}");
-            }
-
+            if (updatedMember == null) return NotFound(new { message = $"Member with ID {id} not found." });
             return Ok(updatedMember);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string query)
+        {
+            if (string.IsNullOrWhiteSpace(query)) return BadRequest(new { message = "Query parameter is required." });
+            var results = await _memberService.SearchAsync(query);
+            return Ok(results);
         }
     }
 }

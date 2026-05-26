@@ -1,5 +1,6 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -8,28 +9,16 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
+export class App {
   protected readonly title = signal('gymtech-frontend');
 
-   isDarkMode = true;
-   showThemeButton = false;
+  constructor(private themeService: ThemeService) {}
 
- ngOnInit() {
-  const savedTheme = localStorage.getItem('theme');
+  get isDarkMode(): boolean {
+    return this.themeService.isDarkMode;
+  }
 
-  this.isDarkMode = savedTheme !== 'light';
-  document.body.classList.toggle('light-theme', !this.isDarkMode);
-   this.showThemeButton = !window.location.pathname.includes('/login');
-}
-
-  toggleTheme() {
-     
-  this.isDarkMode = !this.isDarkMode;
-
-  document.body.classList.toggle('light-theme', !this.isDarkMode);
-  localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
-
-  console.log('Theme changed:', this.isDarkMode ? 'dark' : 'light');
-  
-}
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
 }

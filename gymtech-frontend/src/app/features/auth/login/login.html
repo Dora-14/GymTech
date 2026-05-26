@@ -16,58 +16,49 @@
   <!-- RIGHT PANEL: Authentication Form Section -->
   <div class="login-panel login-panel--form">
 
+
     <!-- LOGIN FORM -->
     <div class="form-wrapper" *ngIf="currentPage === 'login'">
       <h2 class="form-title">Login</h2>
 
-      <!-- Error / Success Messages -->
-      <div class="alert alert--error" *ngIf="errorMessage">{{ errorMessage }}</div>
-
       <form class="login-form" (ngSubmit)="onLogin()">
-        <!-- Email Field -->
+
         <div class="form-group">
-          <label for="login-email" class="form-label">Email</label>
+          <label for="username" class="form-label">Username or Email</label>
           <input
-            type="email"
-            id="login-email"
+            type="text"
+            id="username"
             class="form-input"
-            placeholder="Enter your email"
-            [(ngModel)]="loginEmail"
-            name="loginEmail"
-            required
+            placeholder="Enter your username or email"
+            [(ngModel)]="username"
+            name="username"
           />
         </div>
 
-        <!-- Password Field -->
         <div class="form-group">
-          <label for="login-password" class="form-label">Password</label>
+          <label for="password" class="form-label">Password</label>
           <input
             type="password"
-            id="login-password"
+            id="password"
             class="form-input"
             placeholder="Enter your password"
-            [(ngModel)]="loginPassword"
-            name="loginPassword"
-            required
+            [(ngModel)]="password"
+            name="password"
           />
         </div>
 
-        <!-- Login Button -->
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="isLoading"
-        >
-          {{ isLoading ? 'Logging in...' : 'Log In' }}
+        <!-- Error message -->
+        <p *ngIf="loginError" class="error-message">{{ loginError }}</p>
+
+        <button type="submit" class="btn btn-primary" [disabled]="isLoginLoading">
+          {{ isLoginLoading ? 'Logging in...' : 'Log In' }}
         </button>
       </form>
 
       <div class="auth-footer">
         <p class="auth-text">
           Don't have an account yet?
-          <button type="button" class="auth-link" (click)="goToSignup()">
-            Sign up here
-          </button>
+          <button type="button" class="auth-link" (click)="goToSignup()">Sign up here</button>
         </p>
       </div>
     </div>
@@ -76,13 +67,8 @@
     <div class="form-wrapper" *ngIf="currentPage === 'signup'">
       <h2 class="form-title">Create Account</h2>
 
-      <!-- Error / Success Messages -->
-      <div class="alert alert--error"   *ngIf="errorMessage">{{ errorMessage }}</div>
-      <div class="alert alert--success" *ngIf="successMessage">{{ successMessage }}</div>
-
       <form class="login-form" (ngSubmit)="onSignup()">
 
-        <!-- First Name -->
         <div class="form-group">
           <label for="signup-firstname" class="form-label">First Name</label>
           <input
@@ -90,13 +76,11 @@
             id="signup-firstname"
             class="form-input"
             placeholder="Enter your first name"
-            [(ngModel)]="signupFirstName"
-            name="signupFirstName"
-            required
+            [(ngModel)]="firstName"
+            name="firstName"
           />
         </div>
 
-        <!-- Last Name -->
         <div class="form-group">
           <label for="signup-lastname" class="form-label">Last Name</label>
           <input
@@ -104,13 +88,11 @@
             id="signup-lastname"
             class="form-input"
             placeholder="Enter your last name"
-            [(ngModel)]="signupLastName"
-            name="signupLastName"
-            required
+            [(ngModel)]="lastName"
+            name="lastName"
           />
         </div>
 
-        <!-- Email -->
         <div class="form-group">
           <label for="signup-email" class="form-label">Email</label>
           <input
@@ -118,13 +100,11 @@
             id="signup-email"
             class="form-input"
             placeholder="Enter your email"
-            [(ngModel)]="signupEmail"
-            name="signupEmail"
-            required
+            [(ngModel)]="email"
+            name="email"
           />
         </div>
 
-        <!-- Phone Number -->
         <div class="form-group">
           <label for="signup-phone" class="form-label">Phone Number</label>
           <input
@@ -132,27 +112,23 @@
             id="signup-phone"
             class="form-input"
             placeholder="Enter your phone number"
-            [(ngModel)]="signupPhone"
-            name="signupPhone"
-            required
+            [(ngModel)]="phone"
+            name="phone"
           />
         </div>
 
-        <!-- Password -->
         <div class="form-group">
           <label for="signup-password" class="form-label">Password</label>
           <input
             type="password"
             id="signup-password"
             class="form-input"
-            placeholder="At least 6 characters"
+            placeholder="Enter a strong password"
             [(ngModel)]="signupPassword"
             name="signupPassword"
-            required
           />
         </div>
 
-        <!-- Confirm Password -->
         <div class="form-group">
           <label for="signup-confirmpassword" class="form-label">Confirm Password</label>
           <input
@@ -160,26 +136,27 @@
             id="signup-confirmpassword"
             class="form-input"
             placeholder="Confirm your password"
-            [(ngModel)]="signupConfirmPassword"
-            name="signupConfirmPassword"
-            required
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
           />
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary" [disabled]="isLoading">
-          {{ isLoading ? 'Creating account...' : 'Create Account' }}
+        <!-- Error / Success messages -->
+        <p *ngIf="signupError" class="error-message">{{ signupError }}</p>
+        <p *ngIf="signupSuccess" class="success-message">{{ signupSuccess }}</p>
+
+        <button type="submit" class="btn btn-primary" [disabled]="isSignupLoading">
+          {{ isSignupLoading ? 'Creating account...' : 'Create Account' }}
         </button>
       </form>
 
       <div class="auth-footer">
         <p class="auth-text">
           Already have an account?
-          <button type="button" class="auth-link" (click)="goToLogin()">
-            Login Here
-          </button>
+          <button type="button" class="auth-link" (click)="goToLogin()">Login Here</button>
         </p>
       </div>
     </div>
+
   </div>
 </div>

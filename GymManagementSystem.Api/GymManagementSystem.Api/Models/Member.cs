@@ -6,7 +6,6 @@ namespace GymManagementSystem.Api.Models
     public class Member
     {
         [Key]
-        [JsonIgnore]
         public int MemberId { get; set; }
 
         [Required(ErrorMessage = "Full name is required.")]

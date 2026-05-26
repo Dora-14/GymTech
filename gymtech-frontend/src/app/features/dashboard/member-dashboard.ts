@@ -7,6 +7,7 @@ import { MemberService } from '../../services/member.service';
 import { SubscriptionService } from '../../services/subscription.service';
 import { PaymentService } from '../../services/payment.service';
 import { AttendanceService } from '../../services/attendance.service';
+import { ThemeService } from '../../services/theme.service';
 import { TrainerService } from '../../services/trainer.service';
 import { Member } from '../../models/member.model';
 import { Subscription, SubscriptionPlan } from '../../models/subscription.model';
@@ -22,8 +23,11 @@ import { Trainer } from '../../models/trainer.model';
 })
 export class MemberDashboard implements OnInit {
   activeFeature = 'home';
-  isDarkMode = false;
   memberName = '';
+
+  get isDarkMode(): boolean {
+    return this.themeService.isDarkMode;
+  }
   memberId = 0;
 
   profile: Member | null = null;
@@ -47,6 +51,7 @@ export class MemberDashboard implements OnInit {
 
   constructor(
     private router: Router,
+    private themeService: ThemeService,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private memberService: MemberService,
@@ -80,7 +85,7 @@ export class MemberDashboard implements OnInit {
   }
 
   toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
+    this.themeService.toggleTheme();
   }
 
   getPageTitle(): string {

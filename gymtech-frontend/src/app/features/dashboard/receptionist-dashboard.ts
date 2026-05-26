@@ -7,6 +7,7 @@ import { MemberService } from '../../services/member.service';
 import { SubscriptionService } from '../../services/subscription.service';
 import { PaymentService } from '../../services/payment.service';
 import { AttendanceService } from '../../services/attendance.service';
+import { ThemeService } from '../../services/theme.service';
 import { TrainerService } from '../../services/trainer.service';
 import { Member, CreateMemberRequest } from '../../models/member.model';
 import { CreateSubscriptionRequest, Subscription, SubscriptionPlan } from '../../models/subscription.model';
@@ -25,8 +26,11 @@ interface PersonEntry {
 })
 export class ReceptionistDashboard implements OnInit {
   activeFeature = 'home';
-  isDarkMode = false;
   receptionistName = '';
+
+  get isDarkMode(): boolean {
+    return this.themeService.isDarkMode;
+  }
 
   memberSearchQuery = '';
   searchResults: Member[] = [];
@@ -66,6 +70,7 @@ export class ReceptionistDashboard implements OnInit {
 
   constructor(
     private router: Router,
+    private themeService: ThemeService,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private memberService: MemberService,
@@ -95,7 +100,7 @@ export class ReceptionistDashboard implements OnInit {
   }
 
   toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
+    this.themeService.toggleTheme();
   }
 
   getPageTitle(): string {

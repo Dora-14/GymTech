@@ -9,6 +9,7 @@ import { SubscriptionService } from '../../services/subscription.service';
 import { PaymentService } from '../../services/payment.service';
 import { AttendanceService } from '../../services/attendance.service';
 import { StatsService } from '../../services/stats.service';
+import { ThemeService } from '../../services/theme.service';
 import { UserService } from '../../services/user.service';
 import { Stats } from '../../models/stats.model';
 import { Member, CreateMemberRequest } from '../../models/member.model';
@@ -26,8 +27,11 @@ import { UserAccount, CreateUserRequest } from '../../models/user.model';
 })
 export class Dashboard implements OnInit {
   activeFeature = 'home';
-  isDarkMode = false;
   adminName = '';
+
+  get isDarkMode(): boolean {
+    return this.themeService.isDarkMode;
+  }
 
   stats: Stats = { totalMembers: 0, totalTrainers: 0, activeSubscriptions: 0, totalRevenue: 0 };
 
@@ -84,6 +88,7 @@ export class Dashboard implements OnInit {
 
   constructor(
     private router: Router,
+    private themeService: ThemeService,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private memberService: MemberService,
@@ -101,7 +106,7 @@ export class Dashboard implements OnInit {
   }
 
   toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
+    this.themeService.toggleTheme();
   }
 
   navigateTo(feature: string): void {

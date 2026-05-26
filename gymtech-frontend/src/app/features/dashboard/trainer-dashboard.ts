@@ -5,6 +5,7 @@ import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MemberService } from '../../services/member.service';
 import { AttendanceService } from '../../services/attendance.service';
+import { ThemeService } from '../../services/theme.service';
 import { TrainerService } from '../../services/trainer.service';
 import { Member } from '../../models/member.model';
 import { Attendance } from '../../models/attendance.model';
@@ -17,9 +18,12 @@ import { Attendance } from '../../models/attendance.model';
 })
 export class TrainerDashboard implements OnInit {
   activeFeature = 'home';
-  isDarkMode = false;
   trainerName = '';
   trainerId = 0;
+
+  get isDarkMode(): boolean {
+    return this.themeService.isDarkMode;
+  }
 
   members: Member[] = [];
   memberSearchQuery = '';
@@ -35,6 +39,7 @@ export class TrainerDashboard implements OnInit {
 
   constructor(
     private router: Router,
+    private themeService: ThemeService,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
     private memberService: MemberService,
@@ -67,7 +72,7 @@ export class TrainerDashboard implements OnInit {
   }
 
   toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
+    this.themeService.toggleTheme();
   }
 
   getPageTitle(): string {

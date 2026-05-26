@@ -1,4 +1,7 @@
-﻿namespace GymManagementSystem.Api.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace GymManagementSystem.Api.Models
 {
     public class Payment
     {

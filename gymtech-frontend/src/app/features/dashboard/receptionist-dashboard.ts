@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
@@ -88,6 +88,7 @@ export class ReceptionistDashboard implements OnInit {
   }
 
   logout(): void {
+    this.authService.logout();
     this.authService.logout();
     this.router.navigate(['/login']);
   }

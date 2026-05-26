@@ -12,6 +12,14 @@ builder.Services.AddCors(options =>
         builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAngularApp",
+//        policy => policy.WithOrigins("http://localhost:4200") // Angular's default port
+//                        .AllowAnyMethod()
+//                        .AllowAnyHeader());
+//});
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -90,6 +98,10 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseCors("AllowAll");
+
+//app.UseCors("AllowAngularApp");
+
+
 
 if (app.Environment.IsDevelopment())
 {

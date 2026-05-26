@@ -1,0 +1,129 @@
+﻿using GymManagementSystem.Api.Data;
+using GymManagementSystem.Api.Models;
+using GymManagementSystem.Api.Services;
+using Microsoft.EntityFrameworkCore;
+
+namespace GymManagementSystem.Tests.Services
+{
+    public class MemberServiceTests
+    {
+        private AppDbContext GetDbContext() => new AppDbContext(
+            new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase($"MemberServiceDb_{Guid.NewGuid()}").Options);
+
+        [Fact]
+        public async Task GetAll_ReturnsAllRecords()
+        {
+            using var context = GetDbContext();
+            context.Members.AddRange(new List<Member>
+            {
+                new Member { MemberId = 1, FullName = "A", Email = "a@g.com", Phone = "1" },
+                new Member { MemberId = 2, FullName = "B", Email = "b@g.com", Phone = "2" }
+            });
+            await context.SaveChangesAsync();
+
+            var service = new MemberService(context);
+
+            var results = await service.GetAllAsync();
+
+            Assert.Equal(2, results.Count);
+        }
+
+        [Fact]
+        public async Task GetById_IncludesRelations()
+        {
+            using var context = GetDbContext();
+            var member = new Member { MemberId = 5, FullName = "Charlie", Email = "c@g.com", Phone = "3" };
+            context.Members.Add(member);
+
+            context.Subscriptions.Add(new Subscription { SubscriptionId = 1, MemberId = 5, StartDate = DateTime.Now, EndDate = DateTime.Now });
+            context.Payments.Add(new Payment { PaymentId = 1, MemberId = 5, Amount = 50, Date = DateTime.Now, Method = "Card" });
+            await context.SaveChangesAsync();
+
+            var service = new MemberService(context);
+
+            var result = await service.GetByIdAsync(5);
+
+            Assert.NotNull(result);
+            Assert.Single(result.Subscriptions);
+            Assert.Single(result.Payments);
+        }
+
+        [Fact]
+        public async Task Add_SavesDatabaseRecord()
+        {
+            using var context = GetDbContext();
+            var service = new MemberService(context);
+            var member = new Member { MemberId = 10, FullName = "New User", Email = "n@g.com", Phone = "4" };
+
+            var result = await service.AddAsync(member);
+
+            var saved = await context.Members.FindAsync(10);
+            Assert.NotNull(saved);
+            Assert.Equal("New User", saved.FullName);
+        }
+
+        [Fact]
+        public async Task UpdateState_ModifiesRecord()
+        {
+            using var context = GetDbContext();
+            var member = new Member { MemberId = 20, FullName = "Old Name", Email = "o@g.com", Phone = "5" };
+            context.Members.Add(member);
+            await context.SaveChangesAsync();
+
+            context.Entry(member).State = EntityState.Detached;
+
+            var service = new MemberService(context);
+            member.FullName = "Changed Name";
+
+            await service.UpdateAsync(member);
+
+            var saved = await context.Members.FindAsync(20);
+            Assert.Equal("Changed Name", saved.FullName);
+        }
+
+        [Fact]
+        public async Task UpdateById_ModifiesProperties()
+        {
+            using var context = GetDbContext();
+            context.Members.Add(new Member { MemberId = 30, FullName = "Before", Email = "b@g.com", Phone = "6" });
+            await context.SaveChangesAsync();
+
+            var service = new MemberService(context);
+            var modifications = new Member { FullName = "After", Email = "after@g.com", Phone = "7" };
+
+            var result = await service.UpdateAsync(30, modifications);
+
+            Assert.NotNull(result);
+            Assert.Equal("After", result.FullName);
+            Assert.Equal("after@g.com", result.Email);
+        }
+
+        [Fact]
+        public async Task UpdateById_InvalidId_ReturnsNull()
+        {
+            using var context = GetDbContext();
+            var service = new MemberService(context);
+            var modifications = new Member { FullName = "Ghost" };
+
+            var result = await service.UpdateAsync(999, modifications);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task Delete_RemovesRecord()
+        {
+            using var context = GetDbContext();
+            context.Members.Add(new Member { MemberId = 40, FullName = "To Delete", Email = "d@g.com", Phone = "8" });
+            await context.SaveChangesAsync();
+
+            var service = new MemberService(context);
+
+            await service.DeleteAsync(40);
+
+            var saved = await context.Members.FindAsync(40);
+            Assert.Null(saved);
+        }
+    }
+}

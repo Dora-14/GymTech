@@ -1,65 +1,103 @@
-import { Component } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-
-/**
- * Trainer Dashboard Component
- *
- * This is the main trainer dashboard that serves as the central hub after login.
- * It provides access to trainer-specific features and member management.
- *
- * Features Available:
- * - View Assigned Members: See members assigned to this trainer
- * - Record Attendance: Track member attendance in sessions
- * - View Schedule: Check training schedule and sessions
- * - Logout: Exit the trainer session
- */
+import { AuthService } from '../../services/auth.service';
+import { MemberService } from '../../services/member.service';
+import { AttendanceService } from '../../services/attendance.service';
+import { TrainerService } from '../../services/trainer.service';
+import { Member } from '../../models/member.model';
+import { Attendance } from '../../models/attendance.model';
 
 @Component({
   selector: 'app-trainer-dashboard',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './trainer-dashboard.html',
   styleUrl: './trainer-dashboard.css',
 })
-export class TrainerDashboard {
-  /**
-   * Track which feature/page is currently active
-   */
-  activeFeature: string = 'home';
+export class TrainerDashboard implements OnInit {
+  activeFeature = 'home';
+  trainerName = '';
+  trainerId = 0;
 
-  /**
-   * Store the trainer username for display in top bar
-   */
-  trainerName: string = 'Trainer';
+  members: Member[] = [];
+  memberSearchQuery = '';
+  memberError = '';
 
-  constructor(private router: Router) {}
+  checkInMemberId = '';
+  checkInError = '';
+  checkInSuccess = '';
 
-  /**
-   * Navigate to a specific feature/page
-   */
-  navigateTo(feature: string): void {
-    this.activeFeature = feature;
-    console.log(`Navigating to: ${feature}`);
+  attendanceMemberId = '';
+  attendanceList: Attendance[] = [];
+
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService,
+    private memberService: MemberService,
+    private attendanceService: AttendanceService,
+    private trainerService: TrainerService
+  ) {}
+
+  ngOnInit(): void {
+    this.trainerId = this.authService.getTrainerId();
+    if (this.trainerId) {
+      this.trainerService.getById(this.trainerId).subscribe({
+        next: t => { this.trainerName = t.fullName; this.cdr.detectChanges(); }
+      });
+    } else {
+      this.trainerName = this.authService.getUsername();
+    }
+    this.loadMembers();
   }
 
-  /**
-   * Logout function - redirects to login page
-   */
+  navigateTo(feature: string): void {
+    this.activeFeature = feature;
+    this.checkInError = this.checkInSuccess = '';
+    this.cdr.detectChanges();
+  }
+
   logout(): void {
-    console.log('Logging out...');
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
-  /**
-   * Get the page title based on active feature
-   */
   getPageTitle(): string {
     const titles: { [key: string]: string } = {
-      home: 'Dashboard Home',
-      members: 'View Assigned Members',
-      attendance: 'Record Attendance',
-      schedule: 'View Schedule',
+      home: 'Dashboard Home', members: 'Members', attendance: 'Record Attendance', schedule: 'Schedule',
     };
     return titles[this.activeFeature] || 'Dashboard';
+  }
+
+  loadMembers(): void {
+    if (this.trainerId) {
+      this.trainerService.getMembersByTrainer(this.trainerId).subscribe({ next: m => { this.members = m; this.cdr.detectChanges(); } });
+    } else {
+      this.memberService.getAll().subscribe({ next: m => { this.members = m; this.cdr.detectChanges(); } });
+    }
+  }
+
+  searchMembers(): void {
+    if (!this.memberSearchQuery.trim()) { this.loadMembers(); return; }
+    this.memberService.search(this.memberSearchQuery).subscribe({
+      next: m => { this.members = m; this.cdr.detectChanges(); },
+      error: () => { this.memberError = 'Search failed.'; this.cdr.detectChanges(); }
+    });
+  }
+
+  checkIn(): void {
+    const id = parseInt(this.checkInMemberId);
+    if (!id) { this.checkInError = 'Enter a valid member ID.'; this.cdr.detectChanges(); return; }
+    this.attendanceService.checkIn(id).subscribe({
+      next: () => { this.checkInSuccess = `Member #${id} checked in.`; this.checkInMemberId = ''; this.cdr.detectChanges(); },
+      error: err => { this.checkInError = err?.error?.message ?? 'Check-in failed.'; this.cdr.detectChanges(); }
+    });
+  }
+
+  loadAttendance(): void {
+    const id = parseInt(this.attendanceMemberId);
+    if (!id) return;
+    this.attendanceService.getByMember(id).subscribe({ next: a => { this.attendanceList = a; this.cdr.detectChanges(); } });
   }
 }

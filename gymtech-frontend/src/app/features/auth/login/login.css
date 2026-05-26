@@ -257,6 +257,36 @@
 }
 
 /* ================================================
+   FEEDBACK MESSAGES - Error and success states
+   ================================================ */
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(255, 107, 107, 0.15);
+  border-radius: 4px;
+  border-left: 3px solid #ff6b6b;
+}
+
+.success-message {
+  color: #69db7c;
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(105, 219, 124, 0.15);
+  border-radius: 4px;
+  border-left: 3px solid #69db7c;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ================================================
    RESPONSIVE DESIGN - Mobile and tablet styles
    ================================================ */
 

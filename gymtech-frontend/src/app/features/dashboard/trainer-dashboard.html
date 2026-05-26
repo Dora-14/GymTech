@@ -73,30 +73,13 @@
         <div *ngIf="activeFeature === 'home'" class="feature-content">
           <div class="welcome-card">
             <h3>Welcome to GymTech Trainer Dashboard</h3>
-            <p>
-              Manage your training sessions and track member progress. Use the sidebar
-              to navigate through your training activities.
-            </p>
+            <p>Manage your training sessions and track member progress.</p>
             <div class="quick-stats">
               <div class="stat-card">
                 <div class="stat-icon">👥</div>
                 <div class="stat-info">
-                  <div class="stat-label">Assigned Members</div>
-                  <div class="stat-value">0</div>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">✓</div>
-                <div class="stat-info">
-                  <div class="stat-label">Sessions Today</div>
-                  <div class="stat-value">0</div>
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">📅</div>
-                <div class="stat-info">
-                  <div class="stat-label">Upcoming Sessions</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-label">Total Members</div>
+                  <div class="stat-value">{{ members.length }}</div>
                 </div>
               </div>
             </div>
@@ -105,18 +88,52 @@
 
         <!-- View Assigned Members -->
         <div *ngIf="activeFeature === 'members'" class="feature-content">
-          <div class="empty-state">
-            <p>👥 View Assigned Members</p>
-            <p class="text-muted">Your assigned members list will be displayed here</p>
+          <div *ngIf="memberError" class="msg-error">{{ memberError }}</div>
+          <div class="form-card">
+            <h4>Search Members</h4>
+            <div class="search-bar">
+              <input type="text" [(ngModel)]="memberSearchQuery" placeholder="Name or email..." (keyup.enter)="searchMembers()">
+              <button class="btn btn-primary" (click)="searchMembers()">Search</button>
+              <button class="btn btn-secondary" (click)="memberSearchQuery = ''; loadMembers()">Clear</button>
+            </div>
           </div>
+          <table class="data-table">
+            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th></tr></thead>
+            <tbody>
+              <tr *ngFor="let m of members">
+                <td>{{ m.memberId }}</td><td>{{ m.fullName }}</td><td>{{ m.email }}</td><td>{{ m.phone }}</td>
+              </tr>
+              <tr *ngIf="members.length === 0"><td colspan="4" style="text-align:center;padding:2rem;color:#555">No members found.</td></tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- Record Attendance -->
         <div *ngIf="activeFeature === 'attendance'" class="feature-content">
-          <div class="empty-state">
-            <p>✓ Record Attendance</p>
-            <p class="text-muted">Attendance recording interface will be displayed here</p>
+          <div *ngIf="checkInSuccess" class="msg-success">{{ checkInSuccess }}</div>
+          <div *ngIf="checkInError" class="msg-error">{{ checkInError }}</div>
+          <div class="form-card">
+            <h4>Check In a Member</h4>
+            <div class="search-bar">
+              <input type="number" [(ngModel)]="checkInMemberId" placeholder="Enter Member ID" (keyup.enter)="checkIn()">
+              <button class="btn btn-primary" (click)="checkIn()">Check In</button>
+            </div>
           </div>
+          <div class="form-card">
+            <h4>View Member Attendance History</h4>
+            <div class="search-bar">
+              <input type="number" [(ngModel)]="attendanceMemberId" placeholder="Enter Member ID">
+              <button class="btn btn-secondary" (click)="loadAttendance()">Load History</button>
+            </div>
+          </div>
+          <table class="data-table" *ngIf="attendanceList.length > 0">
+            <thead><tr><th>ID</th><th>Date</th><th>Check-In Time</th></tr></thead>
+            <tbody>
+              <tr *ngFor="let a of attendanceList">
+                <td>{{ a.attendanceId }}</td><td>{{ a.date | date:'shortDate' }}</td><td>{{ a.checkInTime }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- View Schedule -->

@@ -17,10 +17,12 @@ namespace GymManagementSystem.Api.Services
         {
             newSubscription.EndDate = newSubscription.StartDate.AddDays(newSubscription.DurationDays);
 
+            var newType = newSubscription.Type;
             var overlappingSubscription = await _context.Subscriptions
                 .FirstOrDefaultAsync(s => s.MemberId == newSubscription.MemberId
                                      && s.IsActive
-                                     && s.EndDate > newSubscription.StartDate);
+                                     && s.EndDate > newSubscription.StartDate
+                                     && (newType == "Trainer" ? s.Type == "Trainer" : s.Type != "Trainer"));
 
             if (overlappingSubscription != null)
             {
@@ -49,6 +51,11 @@ namespace GymManagementSystem.Api.Services
             return await _context.Subscriptions
                 .Where(s => s.MemberId == memberId)
                 .ToListAsync();
+        }
+
+        public async Task<List<Subscription>> GetAllAsync()
+        {
+            return await _context.Subscriptions.ToListAsync();
         }
     }
 }

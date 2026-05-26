@@ -59,6 +59,16 @@
           <span class="sidebar-icon">💳</span>
           <span class="sidebar-label">Payment History</span>
         </button>
+
+        <!-- Attendance History -->
+        <button
+          class="sidebar-item"
+          [class.active]="activeFeature === 'attendance'"
+          (click)="navigateTo('attendance')"
+        >
+          <span class="sidebar-icon">✓</span>
+          <span class="sidebar-label">Attendance History</span>
+        </button>
       </nav>
     </aside>
 
@@ -72,31 +82,28 @@
         <!-- Home Page -->
         <div *ngIf="activeFeature === 'home'" class="feature-content">
           <div class="welcome-card">
-            <h3>Welcome to GymTech Member Dashboard</h3>
-            <p>
-              Manage your gym membership and stay updated with your account details.
-              Use the sidebar to navigate through your account information.
-            </p>
+            <h3>Welcome to GymTech, {{ memberName }}!</h3>
+            <p>Manage your gym membership and stay updated with your account details.</p>
             <div class="quick-stats">
               <div class="stat-card">
                 <div class="stat-icon">📋</div>
                 <div class="stat-info">
-                  <div class="stat-label">Current Subscription</div>
-                  <div class="stat-value">Active</div>
+                  <div class="stat-label">Subscription</div>
+                  <div class="stat-value">{{ activeSubscription ? activeSubscription.type : 'None' }}</div>
                 </div>
               </div>
               <div class="stat-card">
                 <div class="stat-icon">📅</div>
                 <div class="stat-info">
                   <div class="stat-label">Days Remaining</div>
-                  <div class="stat-value">0</div>
+                  <div class="stat-value">{{ daysRemaining() }}</div>
                 </div>
               </div>
               <div class="stat-card">
-                <div class="stat-icon">💳</div>
+                <div class="stat-icon">✓</div>
                 <div class="stat-info">
-                  <div class="stat-label">Next Payment Due</div>
-                  <div class="stat-value">--</div>
+                  <div class="stat-label">Status</div>
+                  <div class="stat-value">{{ activeSubscription ? 'Active' : 'Inactive' }}</div>
                 </div>
               </div>
             </div>
@@ -105,26 +112,155 @@
 
         <!-- View Profile -->
         <div *ngIf="activeFeature === 'profile'" class="feature-content">
-          <div class="empty-state">
-            <p>👤 View Profile</p>
-            <p class="text-muted">Your profile information will be displayed here</p>
+          <div *ngIf="!profile" class="empty-state"><p>Loading profile...</p></div>
+          <div *ngIf="profile" class="profile-card">
+            <h3>My Profile</h3>
+            <div class="profile-field"><span class="profile-label">Full Name</span><span class="profile-value">{{ profile.fullName }}</span></div>
+            <div class="profile-field"><span class="profile-label">Email</span><span class="profile-value">{{ profile.email }}</span></div>
+            <div class="profile-field"><span class="profile-label">Phone</span><span class="profile-value">{{ profile.phone }}</span></div>
+            <div class="profile-field"><span class="profile-label">Date of Birth</span><span class="profile-value">{{ profile.dateOfBirth | date:'mediumDate' }}</span></div>
+            <div class="profile-field"><span class="profile-label">Member Since</span><span class="profile-value">{{ profile.registrationDate | date:'mediumDate' }}</span></div>
+          </div>
+
+          <!-- Assigned trainers -->
+          <div *ngIf="profile?.memberTrainers?.length" class="profile-card" style="margin-top:1.5rem">
+            <h3>My Trainer(s)</h3>
+            <div *ngFor="let mt of profile!.memberTrainers; let i = index">
+              <div [style.margin-top]="i > 0 ? '1rem' : '0'" [style.padding-top]="i > 0 ? '1rem' : '0'" [style.border-top]="i > 0 ? '1px solid #2a3a4a' : 'none'">
+                <div class="profile-field"><span class="profile-label">Name</span><span class="profile-value" style="color:#87CEEB; font-weight:600">{{ mt.trainer.fullName }}</span></div>
+                <div class="profile-field"><span class="profile-label">Speciality</span><span class="profile-value">{{ mt.trainer.speciality }}</span></div>
+                <div class="profile-field"><span class="profile-label">Phone</span><span class="profile-value">{{ mt.trainer.phone }}</span></div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- View Subscription Status -->
         <div *ngIf="activeFeature === 'subscription'" class="feature-content">
-          <div class="empty-state">
-            <p>📋 Subscription Status</p>
-            <p class="text-muted">Your subscription details will be displayed here</p>
+          <div *ngIf="subscribeSuccess" class="msg-success">{{ subscribeSuccess }}</div>
+          <div *ngIf="subscribeError" class="msg-error">{{ subscribeError }}</div>
+
+          <!-- Active subscription summary -->
+          <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem">
+            <div *ngIf="activeSubscription" class="form-card" style="flex:1; min-width:220px">
+              <h4>Current Subscription</h4>
+              <div class="profile-field"><span class="profile-label">Plan</span><span class="profile-value">{{ activeSubscription.type }}</span></div>
+              <div class="profile-field"><span class="profile-label">Expires</span><span class="profile-value">{{ activeSubscription.endDate | date:'mediumDate' }}</span></div>
+              <div class="profile-field"><span class="profile-label">Days Left</span><span class="profile-value">{{ daysRemaining() }}</span></div>
+              <div class="profile-field"><span class="profile-label">Status</span><span class="profile-value"><span class="badge badge-active">Active</span></span></div>
+            </div>
+            <div *ngIf="activeTrainerSubscription" class="form-card" style="flex:1; min-width:220px; border-color:#4a90d9">
+              <h4 style="color:#87CEEB">Current Trainer Plan</h4>
+              <div class="profile-field"><span class="profile-label">Plan</span><span class="profile-value">{{ activeTrainerSubscription.type }}</span></div>
+              <div class="profile-field"><span class="profile-label">Expires</span><span class="profile-value">{{ activeTrainerSubscription.endDate | date:'mediumDate' }}</span></div>
+              <div class="profile-field"><span class="profile-label">Days Left</span><span class="profile-value">{{ daysRemainingTrainer() }}</span></div>
+              <div class="profile-field"><span class="profile-label">Status</span><span class="profile-value"><span class="badge badge-active">Active</span></span></div>
+            </div>
           </div>
+
+          <!-- Available plans -->
+          <h4 style="margin-bottom:1rem; color:#87CEEB">{{ activeSubscription ? 'Available Plans (renew after current expires)' : 'Choose a Subscription Plan' }}</h4>
+          <div class="plan-cards">
+            <div *ngFor="let plan of plans" class="plan-card" [class.plan-popular]="plan.badge === 'Popular'" [class.plan-best]="plan.badge === 'Best Value'">
+              <div class="plan-badge" *ngIf="plan.badge">{{ plan.badge }}</div>
+              <div class="plan-name">{{ plan.name }}</div>
+              <div class="plan-price">{{ plan.price | currency:'RON':'symbol':'1.0-0' }}</div>
+              <div class="plan-duration">{{ formatDuration(plan.durationDays) }}</div>
+              <p class="plan-desc">{{ plan.description }}</p>
+              <button class="btn btn-primary" [disabled]="plan.name === 'Trainer' ? !!activeTrainerSubscription : !!activeSubscription" (click)="subscribeToPlan(plan)">
+                {{ (plan.name === 'Trainer' ? !!activeTrainerSubscription : !!activeSubscription) ? 'Subscribed' : 'Subscribe' }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Trainer picker (appears when Trainer plan Subscribe is clicked) -->
+          <div class="form-card" *ngIf="pendingPlan" style="margin-top:1.5rem; border-color:#4a90d9">
+            <h4 style="color:#87CEEB; margin-bottom:1rem">Choose Your Trainer</h4>
+            <p style="color:#8899aa; font-size:0.9rem; margin-bottom:1rem">{{ pendingPlan.name }} plan · {{ pendingPlan.price | currency:'RON':'symbol':'1.0-0' }} · {{ formatDuration(pendingPlan.durationDays) }}</p>
+            <div *ngIf="subscribeError" class="msg-error" style="margin-bottom:1rem">{{ subscribeError }}</div>
+            <div class="form-group" style="max-width:420px">
+              <label style="color:#87CEEB; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em">Select Trainer</label>
+              <select [(ngModel)]="selectedTrainerId" style="margin-top:0.4rem; padding:0.65rem; background:#0d1e30; border:1px solid #2a3a4a; border-radius:6px; color:#e0e8f0; font-size:0.95rem; width:100%">
+                <option [value]="0">— Pick a trainer —</option>
+                <option *ngFor="let t of trainers" [value]="t.trainerId">{{ t.fullName }} — {{ t.speciality }}</option>
+              </select>
+            </div>
+            <div style="display:flex; gap:1rem; margin-top:1.25rem">
+              <button class="btn btn-primary" style="width:auto" (click)="confirmTrainerSubscription()" [disabled]="!selectedTrainerId">Confirm & Subscribe</button>
+              <button class="btn btn-secondary" style="width:auto" (click)="cancelTrainerPicker()">Cancel</button>
+            </div>
+          </div>
+
+          <!-- History table -->
+          <h4 style="margin:1.5rem 0 0.75rem; color:#87CEEB" *ngIf="subscriptions.length > 0">Subscription History</h4>
+          <table class="data-table" *ngIf="subscriptions.length > 0">
+            <thead><tr><th>Type</th><th>Price</th><th>Start Date</th><th>End Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr *ngFor="let s of subscriptions">
+                <td>{{ s.type }}</td>
+                <td>{{ s.price | currency:'RON':'symbol':'1.2-2' }}</td>
+                <td>{{ s.startDate | date:'shortDate' }}</td>
+                <td>{{ s.endDate | date:'shortDate' }}</td>
+                <td><span [class]="s.isActive ? 'badge badge-active' : 'badge badge-inactive'">{{ s.isActive ? 'Active' : 'Expired' }}</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- View Payment History -->
         <div *ngIf="activeFeature === 'payments'" class="feature-content">
-          <div class="empty-state">
-            <p>💳 Payment History</p>
-            <p class="text-muted">Your payment history will be displayed here</p>
+          <div *ngIf="payments.length === 0" class="empty-state"><p>No payment records found.</p></div>
+          <table class="data-table" *ngIf="payments.length > 0">
+            <thead><tr><th>ID</th><th>Amount</th><th>Method</th><th>Date</th></tr></thead>
+            <tbody>
+              <tr *ngFor="let p of payments">
+                <td>{{ p.paymentId }}</td>
+                <td>{{ p.amount | currency:'RON':'symbol':'1.2-2' }}</td>
+                <td>{{ p.method }}</td>
+                <td>{{ p.date | date:'short' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Attendance History -->
+        <div *ngIf="activeFeature === 'attendance'" class="feature-content">
+          <div class="att-header">
+            <h4 style="margin:0; color:#87CEEB">Attendance History</h4>
+            <button class="btn btn-checkin" (click)="checkInToday()" [disabled]="!!checkInSuccess">Check In Today</button>
           </div>
+          <div *ngIf="checkInSuccess" class="msg-success" style="margin-bottom:1rem">{{ checkInSuccess }}</div>
+          <div *ngIf="checkInError" class="msg-error" style="margin-bottom:1rem">{{ checkInError }}</div>
+          <div *ngIf="attendance.length === 0" class="empty-state"><p>No attendance records yet. Use the button above to check in!</p></div>
+
+          <ng-container *ngIf="attendance.length > 0">
+            <!-- Stats row -->
+            <div class="att-stats">
+              <div class="att-stat-card">
+                <div class="att-stat-value">{{ attendance.length }}</div>
+                <div class="att-stat-label">Total Visits</div>
+              </div>
+              <div class="att-stat-card">
+                <div class="att-stat-value">{{ visitsThisMonth() }}</div>
+                <div class="att-stat-label">This Month</div>
+              </div>
+              <div class="att-stat-card">
+                <div class="att-stat-value">{{ attendance[0].date | date:'MMM d' }}</div>
+                <div class="att-stat-label">Last Visit</div>
+              </div>
+            </div>
+
+            <!-- Timeline list -->
+            <div class="att-list">
+              <div *ngFor="let a of attendance" class="att-entry">
+                <div class="att-day-badge">{{ a.date | date:'EEE' }}</div>
+                <div class="att-info">
+                  <div class="att-date">{{ a.date | date:'MMMM d, yyyy' }}</div>
+                  <div class="att-time">🕐 {{ a.checkInTime | date:'h:mm a' }}</div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
         </div>
       </div>
     </main>

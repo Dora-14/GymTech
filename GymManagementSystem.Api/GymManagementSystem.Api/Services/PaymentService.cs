@@ -29,5 +29,10 @@ namespace GymManagementSystem.Api.Services
                 .Where(p => p.MemberId == memberId)
                 .ToListAsync();
         }
+
+        public async Task<List<Payment>> GetAllAsync()
+        {
+            return await _context.Payments.OrderByDescending(p => p.Date).ToListAsync();
+        }
     }
 }

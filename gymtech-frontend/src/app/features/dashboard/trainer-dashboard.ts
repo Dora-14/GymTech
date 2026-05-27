@@ -1,89 +1,115 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
-
-/**
- * Trainer Dashboard Component
- *
- * This is the main trainer dashboard that serves as the central hub after login.
- * It provides access to trainer-specific features and member management.
- *
- * Features Available:
- * - View Assigned Members: See members assigned to this trainer
- * - Record Attendance: Track member attendance in sessions
- * - View Schedule: Check training schedule and sessions
- * - Logout: Exit the trainer session
- */
+import { AuthService } from '../../services/auth.service';
+import { MemberService } from '../../services/member.service';
+import { AttendanceService } from '../../services/attendance.service';
+import { ThemeService } from '../../services/theme.service';
+import { TrainerService } from '../../services/trainer.service';
+import { Member } from '../../models/member.model';
+import { Attendance } from '../../models/attendance.model';
 
 @Component({
   selector: 'app-trainer-dashboard',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './trainer-dashboard.html',
   styleUrl: './trainer-dashboard.css',
 })
 export class TrainerDashboard implements OnInit {
-  activeFeature: string = 'home';
-  trainerName: string = 'Trainer';
-  isDarkMode = localStorage.getItem('theme') !== 'light';
+  activeFeature = 'home';
+  trainerName = '';
+  trainerId = 0;
 
- toggleTheme() {
-  this.isDarkMode = !this.isDarkMode;
-  document.body.classList.toggle('light-theme', !this.isDarkMode);
-  localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
-}
+  get isDarkMode(): boolean {
+    return this.themeService.isDarkMode;
+  }
 
-  stats = { assignedMembers: 12, sessionsToday: 4, upcomingSessions: 7 };
+  members: Member[] = [];
+  memberSearchQuery = '';
+  memberError = '';
 
-  assignedMembers = [
-    { id: 1, name: 'Alice Johnson', email: 'alice@email.com', goal: 'Weight Loss',  sessionsThisMonth:  8 },
-    { id: 2, name: 'Bob Smith',     email: 'bob@email.com',   goal: 'Muscle Gain',  sessionsThisMonth: 10 },
-    { id: 3, name: 'David Brown',   email: 'david@email.com', goal: 'Endurance',    sessionsThisMonth:  6 },
-    { id: 4, name: 'Eva Green',     email: 'eva@email.com',   goal: 'Flexibility',  sessionsThisMonth:  5 },
-    { id: 5, name: 'Carlos Rivera', email: 'carlos@email.com',goal: 'Strength',     sessionsThisMonth:  9 },
-  ];
+  checkInMemberId = '';
+  checkInError = '';
+  checkInSuccess = '';
 
-  sessions = [
-    { id: 1, member: 'Alice Johnson', date: '2026-05-12', time: '08:30', duration: '60 min', status: 'Completed'   },
-    { id: 2, member: 'Bob Smith',     date: '2026-05-12', time: '10:00', duration: '45 min', status: 'Completed'   },
-    { id: 3, member: 'David Brown',   date: '2026-05-12', time: '13:00', duration: '60 min', status: 'In Progress' },
-    { id: 4, member: 'Eva Green',     date: '2026-05-12', time: '15:00', duration: '45 min', status: 'Scheduled'   },
-    { id: 5, member: 'Carlos Rivera', date: '2026-05-13', time: '09:00', duration: '60 min', status: 'Scheduled'   },
-  ];
+  attendanceMemberId = '';
+  attendanceList: Attendance[] = [];
+  schedule: { day: string; time: string; member: string; type: string }[] = [];
 
-  schedule = [
-    { day: 'Monday',    time: '08:00 – 09:00', member: 'Alice Johnson', type: 'Strength Training' },
-    { day: 'Monday',    time: '10:00 – 10:45', member: 'Bob Smith',     type: 'HIIT'              },
-    { day: 'Tuesday',   time: '09:00 – 10:00', member: 'Carlos Rivera', type: 'Strength Training' },
-    { day: 'Wednesday', time: '08:30 – 09:30', member: 'Alice Johnson', type: 'Cardio'            },
-    { day: 'Wednesday', time: '14:00 – 15:00', member: 'David Brown',   type: 'Endurance'         },
-    { day: 'Thursday',  time: '10:00 – 10:45', member: 'Eva Green',     type: 'Flexibility'       },
-    { day: 'Friday',    time: '08:00 – 09:00', member: 'Bob Smith',     type: 'Strength Training' },
-  ];
-
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private themeService: ThemeService,
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService,
+    private memberService: MemberService,
+    private attendanceService: AttendanceService,
+    private trainerService: TrainerService
+  ) {}
 
   ngOnInit(): void {
-    const name = this.authService.getFirstName();
-    if (name) this.trainerName = name;
+    this.trainerId = this.authService.getTrainerId();
+    if (this.trainerId) {
+      this.trainerService.getById(this.trainerId).subscribe({
+        next: t => { this.trainerName = t.fullName; this.cdr.detectChanges(); }
+      });
+    } else {
+      this.trainerName = this.authService.getUsername();
+    }
+    this.loadMembers();
   }
 
   navigateTo(feature: string): void {
     this.activeFeature = feature;
+    this.checkInError = this.checkInSuccess = '';
+    this.cdr.detectChanges();
   }
 
   logout(): void {
     this.authService.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
   }
 
   getPageTitle(): string {
     const titles: { [key: string]: string } = {
-      home: 'Dashboard Home',
-      members: 'Assigned Members',
-      attendance: 'Session Attendance',
-      schedule: 'Weekly Schedule',
+      home: 'Dashboard Home', members: 'Members', attendance: 'Record Attendance', schedule: 'Schedule',
     };
     return titles[this.activeFeature] || 'Dashboard';
+  }
+
+  loadMembers(): void {
+    if (this.trainerId) {
+      this.trainerService.getMembersByTrainer(this.trainerId).subscribe({ next: m => { this.members = m; this.cdr.detectChanges(); } });
+    } else {
+      this.memberService.getAll().subscribe({ next: m => { this.members = m; this.cdr.detectChanges(); } });
+    }
+  }
+
+  searchMembers(): void {
+    if (!this.memberSearchQuery.trim()) { this.loadMembers(); return; }
+    this.memberService.search(this.memberSearchQuery).subscribe({
+      next: m => { this.members = m; this.cdr.detectChanges(); },
+      error: () => { this.memberError = 'Search failed.'; this.cdr.detectChanges(); }
+    });
+  }
+
+  checkIn(): void {
+    const id = parseInt(this.checkInMemberId);
+    if (!id) { this.checkInError = 'Enter a valid member ID.'; this.cdr.detectChanges(); return; }
+    this.attendanceService.checkIn(id).subscribe({
+      next: () => { this.checkInSuccess = `Member #${id} checked in.`; this.checkInMemberId = ''; this.cdr.detectChanges(); },
+      error: err => { this.checkInError = err?.error?.message ?? 'Check-in failed.'; this.cdr.detectChanges(); }
+    });
+  }
+
+  loadAttendance(): void {
+    const id = parseInt(this.attendanceMemberId);
+    if (!id) return;
+    this.attendanceService.getByMember(id).subscribe({ next: a => { this.attendanceList = a; this.cdr.detectChanges(); } });
   }
 }

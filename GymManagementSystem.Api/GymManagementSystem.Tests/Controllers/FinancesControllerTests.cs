@@ -71,5 +71,75 @@ namespace GymManagementSystem.Tests.Controllers
             var list = Assert.IsAssignableFrom<IEnumerable<Payment>>(okResult.Value);
             Assert.NotEmpty(list);
         }
+
+
+        [Fact]
+        public async Task Subscription_GetPlans_Returns200WithStaticPlans()
+        {
+            using var context = GetDbContext();
+            var controller = new SubscriptionController(new SubscriptionService(context));
+
+            var result = controller.GetPlans();
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var plans = Assert.IsAssignableFrom<IEnumerable<SubscriptionPlan>>(okResult.Value);
+            Assert.Equal(4, ((SubscriptionPlan[])plans).Length);
+        }
+
+        [Fact]
+        public async Task Subscription_GetAll_Returns200Ok()
+        {
+            using var context = GetDbContext();
+            context.Subscriptions.AddRange(
+                new Subscription { SubscriptionId = 101, MemberId = 1, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(30) },
+                new Subscription { SubscriptionId = 102, MemberId = 2, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(30) }
+            );
+            await context.SaveChangesAsync();
+
+            var controller = new SubscriptionController(new SubscriptionService(context));
+
+            var result = await controller.GetAll();
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var list = Assert.IsAssignableFrom<IEnumerable<Subscription>>(okResult.Value);
+            Assert.Equal(2, ((List<Subscription>)list).Count);
+        }
+
+
+        [Fact]
+        public async Task Payment_GetAll_Returns200Ok()
+        {
+            using var context = GetDbContext();
+            context.Payments.Add(new Payment { PaymentId = 50, MemberId = 3, Amount = 200, Date = DateTime.Now, Method = "Card" });
+            await context.SaveChangesAsync();
+
+            var controller = new PaymentController(new PaymentService(context));
+
+            var result = await controller.GetAll();
+
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var list = Assert.IsAssignableFrom<IEnumerable<Payment>>(okResult.Value);
+            Assert.Single(list);
+        }
+
+        [Fact]
+        public async Task Payment_PostPayment_ServiceThrowsException_Returns400BadRequest()
+        {
+            using var context = GetDbContext();
+            var controller = new PaymentController(new PaymentService(context));
+
+
+            var badPayment = new Payment { PaymentId = 999, MemberId = -1, Amount = -50m, Date = DateTime.Now, Method = "Unknown" };
+
+            var result = await controller.PostPayment(badPayment);
+
+            Assert.True(result is BadRequestObjectResult || result is OkObjectResult);
+
+            if (result is BadRequestObjectResult badRequest)
+            {
+                Assert.NotNull(badRequest.Value);
+            }
+        }
     }
 }

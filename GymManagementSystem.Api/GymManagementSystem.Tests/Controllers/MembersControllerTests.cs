@@ -92,5 +92,99 @@ namespace GymManagementSystem.Tests.Controllers
 
             Assert.IsType<NoContentResult>(result);
         }
+
+
+        [Fact]
+        public async Task Update_ExistingMember_Returns200Ok()
+        {
+
+            using var context = GetInMemoryDbContext();
+            var originalMember = new Member { MemberId = 20, FullName = "Old Name", Email = "old@gym.com", Phone = "123" };
+            context.Members.Add(originalMember);
+            await context.SaveChangesAsync();
+
+            var controller = new MemberController(new MemberService(context));
+            var updatedPayload = new Member { MemberId = 20, FullName = "Brand New Name", Email = "new@gym.com", Phone = "999" };
+
+
+            var result = await controller.Update(20, updatedPayload);
+
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnedMember = Assert.IsType<Member>(okResult.Value);
+            Assert.Equal("Brand New Name", returnedMember.FullName);
+
+
+            var dbMember = await context.Members.FindAsync(20);
+            Assert.Equal("new@gym.com", dbMember.Email);
+        }
+
+        [Fact]
+        public async Task Update_NonExistentMember_Returns404NotFound()
+        {
+
+            using var context = GetInMemoryDbContext();
+            var controller = new MemberController(new MemberService(context));
+            var updatedPayload = new Member { MemberId = 99, FullName = "Ghost", Email = "g@g.com", Phone = "0" };
+
+
+            var result = await controller.Update(99, updatedPayload);
+
+
+            Assert.IsType<NotFoundObjectResult>(result);
+        }
+
+
+
+        [Fact]
+        public async Task Search_ValidQuery_ReturnsOkWithMatches()
+        {
+            using var context = GetInMemoryDbContext();
+            context.Members.AddRange(
+                new Member { MemberId = 30, FullName = "Alex Gymgoer", Email = "alex@g.com", Phone = "1" },
+                new Member { MemberId = 31, FullName = "Bob Smith", Email = "bob@g.com", Phone = "2" }
+            );
+            await context.SaveChangesAsync();
+
+            var controller = new MemberController(new MemberService(context));
+
+
+            var result = await controller.Search("Alex");
+
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var results = Assert.IsAssignableFrom<IEnumerable<Member>>(okResult.Value);
+            Assert.Single(results);
+        }
+
+        [Fact]
+        public async Task Search_EmptyQuery_Returns400BadRequest()
+        {
+
+            using var context = GetInMemoryDbContext();
+            var controller = new MemberController(new MemberService(context));
+
+
+            var result = await controller.Search("   ");
+
+
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task GetAll_EmptyDatabase_Returns200WithEmptyList()
+        {
+
+            using var context = GetInMemoryDbContext();
+            var controller = new MemberController(new MemberService(context));
+
+
+            var result = await controller.GetAll();
+
+
+            var okResult = Assert.IsType<OkObjectResult>(result.Result);
+            var returnedMembers = Assert.IsAssignableFrom<IEnumerable<Member>>(okResult.Value);
+            Assert.Empty(returnedMembers);
+        }
     }
 }

@@ -83,5 +83,80 @@ namespace GymManagementSystem.Tests.Models
 
             Assert.NotEmpty(errors);
         }
+
+
+
+        [Fact]
+        public void Member_PhoneTooShort_FailsValidation()
+        {
+
+            var member = new Member
+            {
+                FullName = "Valid Name",
+                Email = "test@gym.com",
+                Phone = "12345"
+            };
+
+            var errors = ValidateModel(member);
+
+            Assert.NotEmpty(errors);
+            Assert.Contains(errors, e => e.ErrorMessage.Contains("Phone number must be between 10 and 15 characters"));
+        }
+
+        [Fact]
+        public void Subscription_ValidData_PassesValidation()
+        {
+
+            var subscription = new Subscription
+            {
+                Type = "Standard",
+                Price = 150.00m,
+                DurationDays = 30,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(30)
+            };
+
+
+            var errors = ValidateModel(subscription);
+
+
+            Assert.Empty(errors);
+        }
+
+        [Theory]
+        [InlineData(0.00)]
+        [InlineData(-10.50)]
+        public void Subscription_PriceZeroOrNegative_FailsValidation(decimal invalidPrice)
+        {
+            var subscription = new Subscription
+            {
+                Type = "Premium",
+                Price = invalidPrice,
+                DurationDays = 90
+            };
+
+            var errors = ValidateModel(subscription);
+
+            Assert.NotEmpty(errors);
+            Assert.Contains(errors, e => e.ErrorMessage.Contains("Prețul trebuie să fie mai mare de 0!"));
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(400)]
+        public void Subscription_DurationOutOfRange_FailsValidation(int invalidDuration)
+        {
+            var subscription = new Subscription
+            {
+                Type = "Basic",
+                Price = 50.00m,
+                DurationDays = invalidDuration
+            };
+
+            var errors = ValidateModel(subscription);
+
+            Assert.NotEmpty(errors);
+            Assert.Contains(errors, e => e.ErrorMessage.Contains("Durata trebuie să fie între 1 și 365 de zile!"));
+        }
     }
 }

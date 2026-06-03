@@ -1,0 +1,9 @@
+@if (showThemeToggle) {
+  <div class="app-theme-toggle">
+    <button class="theme-toggle" (click)="toggleTheme()">
+      {{ isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+    </button>
+  </div>
+}
+
+<router-outlet />

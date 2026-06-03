@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\GymManagementSystem.Api",
+    "\\GymManagementSystem.Api\\GymManagementSystem.Api",
+    "\\GymManagementSystem.Api\\GymManagementSystem.Tests\\obj",
+    "\\GymManagementSystem.Api\\GymManagementSystem.Tests\\obj\\Release",
+    "\\gymtech-frontend\\src",
+    "\\gymtech-frontend\\src\\app"
+  ],
+  "SelectedNode": "\\GymManagementSystem.Api\\GymManagementSystem.Api\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

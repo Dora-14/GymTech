@@ -1,0 +1,136 @@
+<div class="login-container">
+  <!-- LEFT PANEL: Welcome Section -->
+  <div class="login-panel login-panel--welcome">
+    <div class="welcome-content">
+      <h1 class="welcome-title">Welcome to GymTech</h1>
+      <p class="welcome-subtitle">Gym Management System</p>
+      <p class="welcome-message">
+        A complete solution for gym administration, trainer management,
+        memberships, and member access.
+      <p class="welcome-message">
+        - all in one place -
+      </p>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: Authentication Form Section -->
+  <div class="login-panel login-panel--form">
+
+
+    <!-- LOGIN FORM -->
+    <div class="form-wrapper" *ngIf="currentPage === 'login'">
+      <h2 class="form-title">Login</h2>
+
+      <form class="login-form" (ngSubmit)="onLogin()">
+
+        <div class="form-group">
+          <label for="username" class="form-label">Username or Email</label>
+          <input type="text" id="username" class="form-input" placeholder="Enter your username or email"
+            [(ngModel)]="username" name="username" />
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="password-wrapper">
+            <input [type]="showLoginPassword ? 'text' : 'password'" id="password" class="form-input password-input"
+              placeholder="Enter your password" [(ngModel)]="password" name="password" />
+
+            <button type="button" class="show-password-btn" (click)="showLoginPassword = !showLoginPassword">
+              {{ showLoginPassword ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Error message -->
+        <p *ngIf="loginError" class="error-message">{{ loginError }}</p>
+
+        <button type="submit" class="btn btn-primary" [disabled]="isLoginLoading">
+          {{ isLoginLoading ? 'Logging in...' : 'Log In' }}
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <p class="auth-text">
+          Don't have an account yet?
+          <button type="button" class="signup-link" (click)="currentPage = 'signup'">
+          Sign up here
+  </button>
+        </p>
+      </div>
+    </div>
+
+    <!-- SIGNUP FORM -->
+    <div class="form-wrapper" *ngIf="currentPage === 'signup'">
+      <h2 class="form-title">Create Account</h2>
+
+      <form class="login-form" (ngSubmit)="onSignup()">
+
+        <div class="form-group">
+          <label for="signup-firstname" class="form-label">First Name</label>
+          <input type="text" id="signup-firstname" class="form-input" placeholder="Enter your first name"
+            [(ngModel)]="firstName" name="firstName" />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-lastname" class="form-label">Last Name</label>
+          <input type="text" id="signup-lastname" class="form-input" placeholder="Enter your last name"
+            [(ngModel)]="lastName" name="lastName" />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email" class="form-label">Email</label>
+          <input type="email" id="signup-email" class="form-input" placeholder="Enter your email" [(ngModel)]="email"
+            name="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-phone" class="form-label">Phone Number</label>
+          <input type="tel" id="signup-phone" class="form-input" placeholder="Enter your phone number"
+            [(ngModel)]="phone" name="phone" />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password" class="form-label">Password</label>
+          <div class="password-wrapper">
+            <input [type]="showSignupPassword ? 'text' : 'password'" id="signup-password"
+              class="form-input password-input" placeholder="Enter a strong password" [(ngModel)]="signupPassword"
+              name="signupPassword" />
+
+            <button type="button" class="show-password-btn" (click)="showSignupPassword = !showSignupPassword">
+              {{ showSignupPassword ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-confirmpassword" class="form-label">Confirm Password</label>
+          <div class="password-wrapper">
+            <input [type]="showConfirmPassword ? 'text' : 'password'" id="signup-confirmpassword"
+              class="form-input password-input" placeholder="Confirm your password" [(ngModel)]="confirmPassword"
+              name="confirmPassword" />
+
+            <button type="button" class="show-password-btn" (click)="showConfirmPassword = !showConfirmPassword">
+              {{ showConfirmPassword ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Error / Success messages -->
+        <p *ngIf="signupError" class="error-message">{{ signupError }}</p>
+        <p *ngIf="signupSuccess" class="success-message">{{ signupSuccess }}</p>
+
+        <button type="submit" class="btn btn-primary" [disabled]="isSignupLoading">
+          {{ isSignupLoading ? 'Creating account...' : 'Create Account' }}
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <p class="auth-text">
+          Already have an account?
+          <button type="button" class="auth-link" (click)="goToLogin()">Login Here</button>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>

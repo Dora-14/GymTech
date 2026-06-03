@@ -1,0 +1,40 @@
+# --- Dependencies & Build Artifacts ---
+# No need for Gemini to index thousands of library files
+node_modules/
+vendor/
+bin/
+obj/
+dist/
+out/
+build/
+
+# --- Version Control ---
+.git/
+.hg/
+.svn/
+
+# --- Environment & Secrets ---
+# Crucial for security; also keeps Gemini from getting confused by local keys
+.env
+.env.*
+*.pem
+*.key
+auth.json
+
+# --- Editor & System Files ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# --- Large Assets ---
+# AI doesn't need to "read" raw binary data
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.pdf
+*.zip
+*.tar.gz

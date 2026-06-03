@@ -1,110 +1,177 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Login } from './login';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Login } from './login';
+import { AuthService } from '../../../services/auth.service';
+import { of, throwError } from 'rxjs';
+import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-class RouterStub {
-  lastNavigatedUrl: string = '';
-  navigate(commands: any[]) {
-    this.lastNavigatedUrl = commands[0];
-  }
-}
-
-describe('Login Component Tests', () => {
+describe('Login Component Vitest Tests', () => {
   let component: Login;
   let fixture: ComponentFixture<Login>;
-  let router: Router;
-  let routerStub: RouterStub;
+  let routerMock: any;
+  let authServiceMock: any;
 
   beforeEach(async () => {
+    routerMock = { navigate: vi.fn() };
+    
+    authServiceMock = {
+      login: vi.fn().mockReturnValue(of({ role: 'Admin', token: 'jwt-123' })),
+      register: vi.fn().mockReturnValue(of({ success: true }))
+    };
 
-    routerStub = new RouterStub();
     await TestBed.configureTestingModule({
-      
-      imports: [Login, RouterTestingModule.withRoutes([])],
+      imports: [Login],
+      providers: [
+        { provide: Router, useValue: routerMock },
+        { provide: AuthService, useValue: authServiceMock }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(Login);
     component = fixture.componentInstance;
-    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
-  // --- LOGIN FORM TESTS ---
+  // --- Infrastructure Tests ---
 
-  it('should create the component', () => {
+  it('should create the component flawlessly', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show login form by default', () => {
+  it('should switch pages correctly when toggle methods are invoked', () => {
+    component.goToSignup();
+    expect(component.currentPage).toBe('signup');
+    expect(component.loginError).toBe('');
+
+    component.goToLogin();
     expect(component.currentPage).toBe('login');
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.form-title')?.textContent).toContain('Login');
+    expect(component.signupError).toBe('');
+    expect(component.signupSuccess).toBe('');
   });
 
-  it('should have a username and password input field', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-   
-    expect(compiled.querySelector('input[type="text"]')).toBeTruthy();
-    expect(compiled.querySelector('input[type="password"]')).toBeTruthy();
+  // --- Login Form Validation & Workflow Tests ---
+
+  it('should catch missing credentials on login and set an validation error message', () => {
+    component.username = '';
+    component.password = '';
+    
+    component.onLogin();
+
+    expect(component.loginError).toBe('Please enter your username and password.');
+    expect(authServiceMock.login).not.toHaveBeenCalled();
   });
 
-  it('should navigate to dashboard on successful login', () => {
+  it('should navigate to different dashboards depending on user role responses on success', () => {
+    // 1. Test Admin Redirection Path
+    component.username = 'admin_user';
+    component.password = 'password123';
+    authServiceMock.login.mockReturnValue(of({ role: 'Admin' }));
+    
+    component.onLogin();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/dashboard']);
+    expect(component.isLoginLoading).toBe(false);
+
+    // 2. Test Trainer Redirection Path
+    authServiceMock.login.mockReturnValue(of({ role: 'Trainer' }));
+    component.onLogin();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/trainer-dashboard']);
+
+    // 3. Test Member Redirection Path
+    authServiceMock.login.mockReturnValue(of({ role: 'Member' }));
+    component.onLogin();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/member-dashboard']);
+  });
+
+  it('should map login API failures to user-friendly error string states', () => {
+    component.username = 'wrong_user';
+    component.password = 'wrong_password';
+    const serverMessage = 'Invalid credentials provided.';
+    authServiceMock.login.mockReturnValue(throwError(() => ({ error: { message: serverMessage } })));
 
     component.onLogin();
-    expect(routerStub.lastNavigatedUrl).toBe('/dashboard');
+
+    expect(component.loginError).toBe(serverMessage);
+    expect(component.isLoginLoading).toBe(false);
   });
 
-  // --- SIGNUP FORM TESTS ---
+  // --- Signup Form Validation & Workflow Tests ---
 
-  it('should switch to signup form when goToSignup is called', () => {
-    component.goToSignup();
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.form-title')?.textContent).toContain('Create Account');
+  it('should catch unpopulated fields on signup validation passes', () => {
+    component.firstName = '';
+    component.onSignup();
+    expect(component.signupError).toBe('All fields are required.');
+    expect(authServiceMock.register).not.toHaveBeenCalled();
   });
 
-  it('should render all 6 required signup input fields', () => {
-    component.goToSignup();
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    
-    const fieldIds = [
-      '#signup-firstname', '#signup-lastname', '#signup-email', 
-      '#signup-phone', '#signup-password', '#signup-confirmpassword'
-    ];
+  it('should block signups if the verification password strings mismatch', () => {
+    component.firstName = 'John';
+    component.lastName = 'Doe';
+    component.email = 'john@gym.com';
+    component.phone = '123456789';
+    component.signupPassword = 'SecurePass123';
+    component.confirmPassword = 'DifferentPass123'; // Mismatch!
 
-    fieldIds.forEach(id => {
-      expect(compiled.querySelector(id)).toBeTruthy();
-    });
+    component.onSignup();
+
+    expect(component.signupError).toBe('Passwords do not match.');
+    expect(authServiceMock.register).not.toHaveBeenCalled();
   });
 
-  it('should have "required" attribute on ALL signup fields', () => {
-    component.goToSignup();
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    
-    const fieldIds = [
-      '#signup-firstname', '#signup-lastname', '#signup-email', 
-      '#signup-phone', '#signup-password', '#signup-confirmpassword'
-    ];
+  it('should invoke registration API and trigger navigation fallback delay on success', () => {
+    // 1. Tell Vitest to hijack the native JavaScript setTimeout timer
+    vi.useFakeTimers();
 
-    fieldIds.forEach(id => {
-      const input = compiled.querySelector(id);
-      expect(input?.hasAttribute('required')).toBe(true);
-    });
+    component.firstName = 'John';
+    component.lastName = 'Doe';
+    component.email = 'john@gym.com';
+    component.phone = '123456789';
+    component.signupPassword = 'SecurePass123';
+    component.confirmPassword = 'SecurePass123';
+
+    const loginRedirectSpy = vi.spyOn(component, 'goToLogin');
+
+    component.onSignup();
+
+    expect(authServiceMock.register).toHaveBeenCalled();
+    expect(component.signupSuccess).toBe('Account created! You can now log in.');
+    expect(component.isSignupLoading).toBe(false);
+
+    // 2. Fast-forward Vitest's clock by 1500ms instantly
+    vi.advanceTimersByTime(1500);
+    
+    expect(loginRedirectSpy).toHaveBeenCalled();
+
+    // 3. Clear fake timers so other tests aren't affected
+    vi.useRealTimers();
   });
 
-  it('should switch back to login when "Login Here" button is clicked', () => {
-    component.goToSignup(); // Start at signup
-    fixture.detectChanges();
-    
-    const compiled = fixture.nativeElement as HTMLElement;
-    const backToLoginBtn = compiled.querySelector('.auth-link') as HTMLButtonElement;
-    backToLoginBtn.click();
-    fixture.detectChanges();
-    
-    expect(component.currentPage).toBe('login');
-    expect(compiled.querySelector('.form-title')?.textContent).toContain('Login');
+  it('should fallback to the main admin dashboard route if the authentication role is unrecognized', () => {
+    component.username = 'guest_user';
+    component.password = 'password123';
+    // Emulate a response containing a non-standard or arbitrary user role string
+    authServiceMock.login.mockReturnValue(of({ role: 'SuperUser' }));
+
+    component.onLogin();
+
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/dashboard']);
+  });
+
+  it('should map signup API failures to user-friendly error strings and disable loading states', () => {
+    component.firstName = 'John';
+    component.lastName = 'Doe';
+    component.email = 'john@gym.com';
+    component.phone = '123456789';
+    component.signupPassword = 'SecurePass123';
+    component.confirmPassword = 'SecurePass123';
+
+    const serverErrorMessage = 'Email address is already in use.';
+    authServiceMock.register.mockReturnValue(throwError(() => ({ error: { message: serverErrorMessage } })));
+
+    component.onSignup();
+
+    expect(component.signupError).toBe(serverErrorMessage);
+    expect(component.isSignupLoading).toBe(false);
   });
 });

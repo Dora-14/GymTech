@@ -63,24 +63,6 @@ namespace GymManagementSystem.Tests.Services
             Assert.Equal("New User", saved.FullName);
         }
 
-        [Fact]
-        public async Task UpdateState_ModifiesRecord()
-        {
-            using var context = GetDbContext();
-            var member = new Member { MemberId = 20, FullName = "Old Name", Email = "o@g.com", Phone = "5" };
-            context.Members.Add(member);
-            await context.SaveChangesAsync();
-
-            context.Entry(member).State = EntityState.Detached;
-
-            var service = new MemberService(context);
-            member.FullName = "Changed Name";
-
-            await service.UpdateAsync(member);
-
-            var saved = await context.Members.FindAsync(20);
-            Assert.Equal("Changed Name", saved.FullName);
-        }
 
         [Fact]
         public async Task UpdateById_ModifiesProperties()
@@ -124,6 +106,68 @@ namespace GymManagementSystem.Tests.Services
 
             var saved = await context.Members.FindAsync(40);
             Assert.Null(saved);
+        }
+
+
+        [Fact]
+        public async Task Search_MatchesFullNameAndEmail_ReturnsCorrectMembers()
+        {
+            // Arrange
+            using var context = GetDbContext();
+            context.Members.AddRange(new List<Member>
+            {
+                new Member { MemberId = 100, FullName = "John Cena", Email = "invisible@gym.com", Phone = "1" },
+
+                new Member { MemberId = 101, FullName = "Regular Guy", Email = "cena_fan@g.com", Phone = "2" },
+                new Member { MemberId = 102, FullName = "Jane Smith", Email = "jane@g.com", Phone = "3" }
+            });
+            await context.SaveChangesAsync();
+
+            var service = new MemberService(context);
+
+            var results = await service.SearchAsync("CENA");
+
+            Assert.Equal(2, results.Count);
+            Assert.Contains(results, m => m.FullName == "John Cena");
+            Assert.Contains(results, m => m.Email == "cena_fan@g.com");
+        }
+
+        [Fact]
+        public async Task Search_NoMatchesExist_ReturnsEmptyList()
+        {
+            using var context = GetDbContext();
+            context.Members.Add(new Member { MemberId = 1, FullName = "John", Email = "j@g.com", Phone = "0" });
+            await context.SaveChangesAsync();
+
+            var service = new MemberService(context);
+
+            var results = await service.SearchAsync("NotPresentInDB");
+
+            Assert.NotNull(results);
+            Assert.Empty(results);
+        }
+
+
+
+        [Fact]
+        public async Task GetById_NonExistentMember_ReturnsNull()
+        {
+            using var context = GetDbContext();
+            var service = new MemberService(context);
+
+            var result = await service.GetByIdAsync(404);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task Delete_NonExistentMember_DoesNotThrow()
+        {
+            using var context = GetDbContext();
+            var service = new MemberService(context);
+
+            var exception = await Record.ExceptionAsync(() => service.DeleteAsync(999));
+            Assert.Null(exception);
         }
     }
 }

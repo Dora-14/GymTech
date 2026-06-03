@@ -64,5 +64,107 @@ namespace GymManagementSystem.Tests.Services
             Assert.NotNull(targetTrainer);
             Assert.NotEmpty(targetTrainer.MemberTrainers);
         }
+
+
+        [Fact]
+        public async Task GetById_ExistingTrainer_ReturnsTrainerWithRelations()
+        {
+            using var context = GetDbContext();
+            context.Trainers.Add(new Trainer { TrainerId = 15, FullName = "Coach Luke", Speciality = "HIIT", Phone = "555" });
+            await context.SaveChangesAsync();
+
+            var service = new TrainerService(context);
+
+            var result = await service.GetByIdAsync(15);
+
+            Assert.NotNull(result);
+            Assert.Equal("Coach Luke", result.FullName);
+        }
+
+        [Fact]
+        public async Task Update_ExistingTrainer_ModifiesPropertiesAndReturnsTrainer()
+        {
+            using var context = GetDbContext();
+            context.Trainers.Add(new Trainer { TrainerId = 30, FullName = "Old Name", Speciality = "Zumba", Phone = "111" });
+            await context.SaveChangesAsync();
+
+            var service = new TrainerService(context);
+            var updateData = new Trainer { FullName = "New Name", Speciality = "Pilates", Phone = "222" };
+
+            var result = await service.UpdateAsync(30, updateData);
+
+            Assert.NotNull(result);
+            Assert.Equal("New Name", result.FullName);
+            Assert.Equal("Pilates", result.Speciality);
+
+            var dbRecord = await context.Trainers.FindAsync(30);
+            Assert.Equal("222", dbRecord.Phone);
+        }
+
+        [Fact]
+        public async Task Update_InvalidId_ReturnsNull()
+        {
+            using var context = GetDbContext();
+            var service = new TrainerService(context);
+
+            var result = await service.UpdateAsync(999, new Trainer { FullName = "Ghost" });
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task Delete_ExistingTrainer_RemovesRecordAndReturnsTrue()
+        {
+            using var context = GetDbContext();
+            context.Trainers.Add(new Trainer { TrainerId = 40, FullName = "Temporary Coach", Speciality = "None", Phone = "0" });
+            await context.SaveChangesAsync();
+
+            var service = new TrainerService(context);
+
+            var result = await service.DeleteAsync(40);
+
+            Assert.True(result);
+            var exists = await context.Trainers.AnyAsync(t => t.TrainerId == 40);
+            Assert.False(exists);
+        }
+
+        [Fact]
+        public async Task Delete_InvalidId_ReturnsFalse()
+        {
+            using var context = GetDbContext();
+            var service = new TrainerService(context);
+
+            var result = await service.DeleteAsync(999);
+
+            Assert.False(result);
+        }
+
+
+        [Fact]
+        public async Task GetMembersByTrainer_ValidId_ReturnsProjectedMemberList()
+        {
+            using var context = GetDbContext();
+            int trainerId = 7;
+
+            context.Trainers.Add(new Trainer { TrainerId = trainerId, FullName = "Coach Sarah", Speciality = "Crossfit", Phone = "4" });
+            context.Members.AddRange(
+                new Member { MemberId = 50, FullName = "Client A", Email = "a@g.com", Phone = "1" },
+                new Member { MemberId = 51, FullName = "Client B", Email = "b@g.com", Phone = "2" }
+            );
+
+            context.MemberTrainers.AddRange(
+                new MemberTrainer { TrainerId = trainerId, MemberId = 50 },
+                new MemberTrainer { TrainerId = trainerId, MemberId = 51 }
+            );
+            await context.SaveChangesAsync();
+
+            var service = new TrainerService(context);
+
+            var results = await service.GetMembersByTrainerAsync(trainerId);
+
+            Assert.Equal(2, results.Count);
+            Assert.Contains(results, m => m.FullName == "Client A");
+            Assert.Contains(results, m => m.FullName == "Client B");
+        }
     }
 }
